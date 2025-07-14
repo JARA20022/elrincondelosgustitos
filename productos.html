@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descubre el menú completo de El Rincón de los Gustitos: pollo broaster, platos criollos, bebidas y postres.">
+    <meta name="author" content="RSOTO">
+    <meta name="keywords" content="menu, platos, pollo broaster, ceviche, lomo saltado, hamburguesa, postres, bebidas">
+    <title>Productos - El Rincón de los Gustitos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Keyframes para la animación del fondo del HEADER (barra de navegación) */
+        @keyframes moveBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Estilo para el fondo animado del HEADER (barra de navegación) */
+        header {
+            background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 50%, #2a2a2a 100%);
+            background-size: 200% 200%; /* Tamaño más grande para permitir el movimiento */
+            animation: moveBackground 15s linear infinite; /* Animación de movimiento */
+            color: white; /* Asegura que el texto dentro del header sea legible */
+        }
+
+        /* Estilo para el fondo de imagen del BODY (toda la página) */
+        body {
+            background-image: url('img/fondo1.jpg'); /* Tu imagen de fondo para Productos */
+            background-size: cover; /* Cubre toda la pantalla sin distorsionar */
+            background-position: center center; /* Centra la imagen */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+            min-height: 100vh; /* Asegura que el fondo cubra al menos toda la altura de la ventana */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Opcional: Asegurar que los enlaces de navegación mantengan su color */
+        header .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.75) !important; /* Un poco transparente para el estado normal */
+        }
+
+        header .navbar-nav .nav-link.active,
+        header .navbar-nav .nav-link:hover {
+            color: white !important; /* Blanco sólido para activo y hover */
+        }
+    </style>
+</head>
+<body>
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/milogo.png" alt="Logo El Rincón" width="40" height="40" class="d-inline-block align-text-top me-2"> El Rincón de los Gustitos
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">🏠 Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="productos.html">🍽️ Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="promos.html">✨ Promociones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacto.html">✉️ Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="comprar.html">
+                                🛒 Carrito <span class="badge bg-danger rounded-pill" id="cart-count">0</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search" onsubmit="event.preventDefault();"> <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" id="searchInput">
+                        <button class="btn btn-outline-light" type="button" id="searchButton">🔍</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="py-5 mt-5 flex-grow-1">
+        <section class="container mt-4">
+            <h1 class="text-center mb-5">Nuestro Menú</h1>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="productGrid">
+                <div class="col product-item">
+                    <div class="card shadow-sm h-100">
+                        <img src="img/comida-rapida-destacada.jpg" class="card-img-top object-fit-cover" alt="Pollo Broaster" style="height: 200px;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Pollo Broaster Clásico</h5>
+                            <p class="card-text text-body-secondary"><small>Categoría: Frituras</small></p>
+                            <p class="card-text">Delicioso pollo broaster crujiente por fuera y jugoso por dentro, acompañado de papas fritas.</p>
+                            <p class="card-text fw-bold">Precio: S/ 15.00</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#productModal"
+                                    data-title="Pollo Broaster Clásico"
+                                    data-description="Nuestro pollo broaster es preparado con una receta secreta, marinado por horas para asegurar un sabor inigualable y una textura perfecta. ¡Ideal para toda la familia!"
+                                    data-image="img/comida-rapida-destacada.jpg"
+                                    data-price="15.00">Ver Detalles</button>
+                                <button type="button" class="btn btn-sm btn-success add-to-cart-btn"
+                                    data-product-name="Pollo Broaster Clásico"
+                                    data-product-price="15.00">Agregar al Carrito</button>
+                            </div>
+                            <small class="text-body-secondary mt-2">¡Popular!</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col product-item">
+                    <div class="card shadow-sm h-100">
+                        <img src="img/menu-ceviche.jpg" class="card-img-top object-fit-cover" alt="Ceviche Fresco" style="height: 200px;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Ceviche de Pescado</h5>
+                            <p class="card-text text-body-secondary"><small>Categoría: Platos Marinos</small></p>
+                            <p class="card-text">El clásico peruano. Pescado fresco marinado en limón, ají, cebolla y cilantro.</p>
+                            <p class="card-text fw-bold">Precio: S/ 25.00</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#productModal"
+                                    data-title="Ceviche de Pescado"
+                                    data-description="Preparado con el pescado más fresco del día, nuestro ceviche es una explosión de sabor cítrico y picante, perfecto para refrescar tu paladar."
+                                    data-image="img/menu-ceviche.jpg"
+                                    data-price="25.00">Ver Detalles</button>
+                                <button type="button" class="btn btn-sm btn-success add-to-cart-btn"
+                                    data-product-name="Ceviche de Pescado"
+                                    data-product-price="25.00">Agregar al Carrito</button>
+                            </div>
+                            <small class="text-body-secondary mt-2">Nuevo</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col product-item">
+                    <div class="card shadow-sm h-100">
+                        <img src="img/menu-lomo-saltado.jpg" class="card-img-top object-fit-cover" alt="Lomo Saltado" style="height: 200px;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Lomo Saltado</h5>
+                            <p class="card-text text-body-secondary"><small>Categoría: Platos Criollos</small></p>
+                            <p class="card-text">Tiernos trozos de lomo de res salteados con cebolla, tomate, ají y papas fritas.</p>
+                            <p class="card-text fw-bold">Precio: S/ 20.00</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#productModal"
+                                    data-title="Lomo Saltado"
+                                    data-description="Un clásico contundente. Lomo de res flameado en wok a alta temperatura para sellar los sabores, acompañado de arroz y papas fritas."
+                                    data-image="img/menu-lomo-saltado.jpg"
+                                    data-price="20.00">Ver Detalles</button>
+                                <button type="button" class="btn btn-sm btn-success add-to-cart-btn"
+                                    data-product-name="Lomo Saltado"
+                                    data-product-price="20.00">Agregar al Carrito</button>
+                            </div>
+                            <small class="text-body-secondary mt-2">Lo Más Pedido</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col product-item">
+                    <div class="card shadow-sm h-100">
+                        <img src="img/menu-hamburguesa.jpg" class="card-img-top object-fit-cover" alt="Hamburguesa Artesanal" style="height: 200px;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Hamburguesa Artesanal</h5>
+                            <p class="card-text text-body-secondary"><small>Categoría: Comida Rápida</small></p>
+                            <p class="card-text">Carne de res casera, queso, lechuga, tomate y nuestra salsa especial en pan brioche.</p>
+                            <p class="card-text fw-bold">Precio: S/ 18.00</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#productModal"
+                                    data-title="Hamburguesa Artesanal"
+                                    data-description="Nuestra hamburguesa está hecha con carne 100% casera y fresca, acompañada de los vegetales más selectos y nuestra salsa secreta. ¡Una delicia!"
+                                    data-image="img/menu-hamburguesa.jpg"
+                                    data-price="18.00">Ver Detalles</button>
+                                <button type="button" class="btn btn-sm btn-success add-to-cart-btn"
+                                    data-product-name="Hamburguesa Artesanal"
+                                    data-product-price="18.00">Agregar al Carrito</button>
+                            </div>
+                            <small class="text-body-secondary mt-2">Oferta</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col product-item">
+                    <div class="card shadow-sm h-100">
+                        <img src="img/menu-pizza.jpg" class="card-img-top object-fit-cover" alt="Pizza Pepperoni" style="height: 200px;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Pizza Pepperoni</h5>
+                            <p class="card-text text-body-secondary"><small>Categoría: Pizzas</small></p>
+                            <p class="card-text">La clásica pizza con abundante pepperoni, queso mozzarella y salsa de tomate casera.</p>
+                            <p class="card-text fw-bold">Precio: S/ 30.00</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#productModal"
+                                    data-title="Pizza Pepperoni"
+                                    data-description="Una masa crujiente, salsa de tomate artesanal, generoso queso mozzarella y el mejor pepperoni para una pizza que no olvidarás."
+                                    data-image="img/menu-pizza.jpg"
+                                    data-price="30.00">Ver Detalles</button>
+                                <button type="button" class="btn btn-sm btn-success add-to-cart-btn"
+                                    data-product-name="Pizza Pepperoni"
+                                    data-product-price="30.00">Agregar al Carrito</button>
+                            </div>
+                            <small class="text-body-secondary mt-2">Nuevo</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col product-item">
+                    <div class="card shadow-sm h-100">
+                        <img src="img/bebidas-postres.jpg" class="card-img-top object-fit-cover" alt="Postres y Bebidas" style="height: 200px;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Postres y Bebidas</h5>
+                            <p class="card-text text-body-secondary"><small>Categoría: Complementos</small></p>
+                            <p class="card-text">Variedad de postres caseros y bebidas refrescantes para acompañar tu comida.</p>
+                            <p class="card-text fw-bold">Precio: S/ 8.00</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#productModal"
+                                    data-title="Postres y Bebidas"
+                                    data-description="Desde tortas de chocolate hasta jugos naturales, tenemos el complemento perfecto para tu experiencia gastronómica."
+                                    data-image="img/bebidas-postres.jpg"
+                                    data-price="8.00">Ver Detalles</button>
+                                <button type="button" class="btn btn-sm btn-success add-to-cart-btn"
+                                    data-product-name="Postres y Bebidas"
+                                    data-product-price="8.00">Agregar al Carrito</button>
+                            </div>
+                            <small class="text-body-secondary mt-2">Siempre Fresco</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">Detalles del Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalProductImage" src="" class="img-fluid mb-3 rounded" alt="Product Image" style="max-height: 250px; object-fit: cover;">
+                    <h4 id="modalProductTitle"></h4>
+                    <p id="modalProductDescription"></p>
+                    <p class="fw-bold" id="modalProductPrice"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" id="modalAddToCartBtn"
+                        data-product-name="" data-product-price="">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
+        <section class="d-flex justify-content-between p-4" style="background-color: #6351ce">
+            <div class="me-5">
+                <span>Conéctate con nosotros en redes sociales:</span>
+            </div>
+            <div>
+                <a href="#" class="text-white me-4"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white me-4"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white me-4"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white me-4"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-white me-4"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </section>
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <div class="row mt-3">
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold">El Rincón de los Gustitos</h6>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+                        <p>
+                            Sabor y tradición en cada bocado. Te ofrecemos una experiencia culinaria auténtica con los mejores ingredientes.
+                        </p>
+                    </div>
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold">Productos</h6>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+                        <p><a href="productos.html" class="text-white">Pollo Broaster</a></p>
+                        <p><a href="productos.html" class="text-white">Platos Criollos</a></p>
+                        <p><a href="productos.html" class="text-white">Bebidas y Postres</a></p>
+                        <p><a href="productos.html" class="text-white">Promociones</a></p>
+                    </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold">Enlaces Útiles</h6>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+                        <p><a href="index.html" class="text-white">Inicio</a></p>
+                        <p><a href="contacto.html" class="text-white">Ayuda</a></p>
+                        <p><a href="comprar.html" class="text-white">Hacer Pedido</a></p>
+                        <p><a href="contacto.html" class="text-white">Trabaja con Nosotros</a></p>
+                    </div>
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <h6 class="text-uppercase fw-bold">Contacto</h6>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+                        <p><i class="fas fa-home me-3"></i> Arequipa, Perú</p>
+                        <p><i class="fas fa-envelope me-3"></i> info@elrincon.com</p>
+                        <p><i class="fas fa-phone me-3"></i> +51 987 654 321</p>
+                        <p><i class="fas fa-print me-3"></i> +51 54 123 456</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+            © <span id="currentYear2"></span> Copyright:
+            <a class="text-white" href="https://elrincondelosgustitos.com/">ElRinconDeLosGustitos.com</a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        document.getElementById("currentYear2").innerText = new Date().getFullYear();
+
+        // --- Cart Management Logic ---
+        let cart = []; // Initialize an empty array for the cart
+
+        function loadCart() {
+            const storedCart = localStorage.getItem('shoppingCart');
+            if (storedCart) {
+                cart = JSON.parse(storedCart);
+            }
+            updateCartCount(); // Update cart count when page loads
+        }
+
+        function saveCart() {
+            localStorage.setItem('shoppingCart', JSON.stringify(cart));
+        }
+
+        function updateCartCount() {
+            const cartCountElement = document.getElementById('cart-count');
+            cartCountElement.textContent = cart.length;
+        }
+
+        function addToCart(productName, productPrice) {
+            const product = {
+                name: productName,
+                price: parseFloat(productPrice)
+            };
+            cart.push(product);
+            saveCart();
+            updateCartCount();
+            alert(`${productName} ha sido agregado al carrito.`); // User feedback
+        }
+
+        // Add event listeners to all "Agregar al Carrito" buttons
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCart(); // Load cart when the DOM is ready
+
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const productName = event.target.dataset.productName;
+                    const productPrice = event.target.dataset.productPrice;
+                    addToCart(productName, productPrice);
+                });
+            });
+
+            // --- Product Modal Logic (modified to include Add to Cart button) ---
+            const productModal = document.getElementById('productModal');
+            productModal.addEventListener('show.bs.modal', event => {
+                const button = event.relatedTarget;
+                const title = button.getAttribute('data-title');
+                const description = button.getAttribute('data-description');
+                const image = button.getAttribute('data-image');
+                const price = button.getAttribute('data-price');
+
+                const modalTitle = productModal.querySelector('#modalProductTitle');
+                const modalDescription = productModal.querySelector('#modalProductDescription');
+                const modalImage = productModal.querySelector('#modalProductImage');
+                const modalPrice = productModal.querySelector('#modalProductPrice');
+                const modalAddToCartBtn = productModal.querySelector('#modalAddToCartBtn');
+
+                modalTitle.textContent = title;
+                modalDescription.textContent = description;
+                modalImage.src = image;
+                modalPrice.textContent = `Precio: S/ ${parseFloat(price).toFixed(2)}`;
+
+                // Set data attributes for the modal's "Add to Cart" button
+                modalAddToCartBtn.dataset.productName = title;
+                modalAddToCartBtn.dataset.productPrice = price;
+
+                // Remove any previous listener before adding a new one to prevent multiple calls
+                const oldModalAddToCartBtn = productModal.querySelector('#modalAddToCartBtn');
+                const newModalAddToCartBtn = oldModalAddToCartBtn.cloneNode(true);
+                oldModalAddToCartBtn.parentNode.replaceChild(newModalAddToCartBtn, oldModalAddToCartBtn);
+
+                newModalAddToCartBtn.addEventListener('click', () => {
+                    addToCart(newModalAddToCartBtn.dataset.productName, newModalAddToCartBtn.dataset.productPrice);
+                    const modalInstance = bootstrap.Modal.getInstance(productModal);
+                    modalInstance.hide(); // Close modal after adding to cart
+                });
+            });
+        });
+
+        // Lógica para la barra de búsqueda (filtrado de productos en la misma página)
+        const searchInput = document.getElementById('searchInput');
+        const productItems = document.querySelectorAll('.product-item'); // Selecciona todas las tarjetas de producto
+
+        function filterProducts() {
+            const searchTerm = searchInput.value.toLowerCase(); // Obtiene el texto de búsqueda y lo convierte a minúsculas
+
+            productItems.forEach(item => {
+                const title = item.querySelector('.card-title').textContent.toLowerCase();
+                const description = item.querySelector('.card-text:nth-of-type(2)').textContent.toLowerCase(); // Segundo p.card-text
+
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    item.style.display = ''; // Muestra el elemento si coincide
+                } else {
+                    item.style.display = 'none'; // Oculta el elemento si no coincide
+                }
+            });
+        }
+
+        // Ejecuta la función de filtrado cada vez que el usuario escribe
+        searchInput.addEventListener('input', filterProducts);
+        // También puedes vincularlo al botón de búsqueda si lo deseas, pero 'input' es más interactivo
+        document.getElementById('searchButton').addEventListener('click', filterProducts);
+    </script>
+</body>
+</html>

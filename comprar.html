@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Realiza tu pedido de comida online en El Rincón de los Gustitos de forma rápida y sencilla.">
+    <meta name="author" content="RSOTO">
+    <meta name="keywords" content="comprar, pedir comida, delivery, orden online, menu online">
+    <title>Comprar - El Rincón de los Gustitos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Keyframes para la animación del fondo del HEADER (barra de navegación) */
+        @keyframes moveBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Estilo para el fondo animado del HEADER (barra de navegación) */
+        header {
+            background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 50%, #2a2a2a 100%);
+            background-size: 200% 200%; /* Tamaño más grande para permitir el movimiento */
+            animation: moveBackground 15s linear infinite; /* Animación de movimiento */
+            color: white; /* Asegura que el texto dentro del header sea legible */
+        }
+
+        /* Estilo para el fondo de imagen del BODY (toda la página) */
+        body {
+            background-image: url('img/fondo3.jpg'); /* Tu imagen de fondo para Comprar */
+            background-size: cover; /* Cubre toda la pantalla sin distorsionar */
+            background-position: center center; /* Centra la imagen */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+            min-height: 100vh; /* Asegura que el fondo cubra al menos toda la altura de la ventana */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Opcional: Asegurar que los enlaces de navegación mantengan su color */
+        header .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.75) !important; /* Un poco transparente para el estado normal */
+        }
+
+        header .navbar-nav .nav-link.active,
+        header .navbar-nav .nav-link:hover {
+            color: white !important; /* Blanco sólido para activo y hover */
+        }
+    </style>
+</head>
+<body>
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/milogo.png" alt="Logo El Rincón" width="40" height="40" class="d-inline-block align-text-top me-2"> El Rincón de los Gustitos
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">🏠 Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="productos.html">🍽️ Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="promos.html">✨ Promociones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacto.html">✉️ Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="comprar.html">🛒 Comprar</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit">🔍</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="py-5 mt-5 flex-grow-1">
+        <section class="container mt-4">
+            <h1 class="text-center mb-5">Realiza tu Pedido</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow-lg p-4 mb-4">
+                        <h4 class="card-title text-center mb-4">Tu Carrito de Compras</h4>
+                        <div class="table-responsive mb-4">
+                            <table class="table table-hover align-middle">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Producto</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Precio Unit.</th>
+                                        <th scope="col">Subtotal</th>
+                                        <th scope="col">Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cartItems"> <tr>
+                                        <td>Pollo Broaster Clásico</td>
+                                        <td><input type="number" class="form-control form-control-sm" value="1" min="1"></td>
+                                        <td>S/ 25.00</td>
+                                        <td>S/ 25.00</td>
+                                        <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ceviche de Pescado</td>
+                                        <td><input type="number" class="form-control form-control-sm" value="1" min="1"></td>
+                                        <td>S/ 35.00</td>
+                                        <td>S/ 35.00</td>
+                                        <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" class="text-end fw-bold">Total:</td>
+                                        <td class="fw-bold" id="cartTotal">S/ 60.00</td> <td></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                        <h4 class="card-title text-center mb-4">Datos de Envío</h4>
+                        <form id="deliveryForm">
+                            <div class="mb-3">
+                                <label for="direccion" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" id="direccion" placeholder="Tu dirección completa" required>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="ciudad" class="form-label">Ciudad</label>
+                                    <input type="text" class="form-control" id="ciudad" placeholder="Tu ciudad" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="telefono" class="form-label">Teléfono</label>
+                                    <input type="tel" class="form-control" id="telefono" placeholder="Número de teléfono" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="notas" class="form-label">Notas Adicionales (Opcional)</label>
+                                <textarea class="form-control" id="notas" rows="3" placeholder="Ej: sin cebolla, con extra picante, etc."></textarea>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-success btn-lg">Confirmar Pedido</button>
+                            </div>
+                            <div id="orderConfirmationMessage" class="mt-3 text-center">
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
+        <section class="d-flex justify-content-between p-4" style="background-color: #6351ce">
+            <div class="me-5">
+                <span>Conéctate con nosotros en redes sociales:</span>
+            </div>
+            <div>
+                <a href="#" class="text-white me-4"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white me-4"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white me-4"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white me-4"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-white me-4"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </section>
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <div class="row mt-3">
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold">El Rincón de los Gustitos</h6>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+                        <p>
+                            Sabor y tradición en cada bocado. Te ofrecemos una experiencia culinaria auténtica con los mejores ingredientes.
+                        </p>
+                    </div>
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold">Productos</h6>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+                        <p><a href="productos.html" class="text-white">Pollo Broaster</a></p>
+                        <p><a href="productos.html" class="text-white">Platos Criollos</a></p>
+                        <p><a href="productos.html" class="text-white">Bebidas y Postres</a></p>
+                        <p><a href="productos.html" class="text-white">Promociones</a></p>
+                    </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold">Enlaces Útiles</h6>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+                        <p><a href="index.html" class="text-white">Inicio</a></p>
+                        <p><a href="contacto.html" class="text-white">Ayuda</a></p>
+                        <p><a href="comprar.html" class="text-white">Hacer Pedido</a></p>
+                        <p><a href="contacto.html" class="text-white">Trabaja con Nosotros</a></p>
+                    </div>
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <h6 class="text-uppercase fw-bold">Contacto</h6>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+                        <p><i class="fas fa-home me-3"></i> Arequipa, Perú</p>
+                        <p><i class="fas fa-envelope me-3"></i> info@elrincon.com</p>
+                        <p><i class="fas fa-phone me-3"></i> +51 987 654 321</p>
+                        <p><i class="fas fa-print me-3"></i> +51 54 123 456</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+            © <span id="currentYear"></span> Copyright:
+            <a class="text-white" href="https://elrincondelosgustitos.com/">ElRinconDeLosGustitos.com</a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        document.getElementById("currentYear").innerText = new Date().getFullYear();
+
+        // Lógica para la confirmación del pedido y limpieza del carrito
+        const deliveryForm = document.querySelector('#deliveryForm');
+        const orderConfirmationMessage = document.getElementById('orderConfirmationMessage');
+        const cartItems = document.getElementById('cartItems'); // El cuerpo de la tabla del carrito
+        const cartTotal = document.getElementById('cartTotal'); // El elemento donde se muestra el total
+
+        deliveryForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita que el formulario se envíe realmente
+
+            // Muestra el mensaje de confirmación
+            orderConfirmationMessage.innerHTML = `
+                <div class="alert alert-success" role="alert">
+                    ¡Tu pedido ha sido confirmado! Nos contactaremos contigo pronto.
+                </div>
+            `;
+
+            // Limpia los campos del formulario de envío
+            deliveryForm.reset();
+
+            // Limpia los productos del carrito y el total
+            cartItems.innerHTML = '<tr><td colspan="5" class="text-center text-muted">El carrito está vacío.</td></tr>';
+            cartTotal.innerText = 'S/ 0.00';
+
+            // Opcional: Oculta el mensaje después de unos segundos
+            setTimeout(() => {
+                orderConfirmationMessage.innerHTML = '';
+            }, 5000); // El mensaje desaparecerá después de 5 segundos
+        });
+    </script>
+</body>
+</html>

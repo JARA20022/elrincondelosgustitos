@@ -25,7 +25,7 @@ python index.py
 
 ```
 
-##🧩 Tecnologías principales
+## 🧩 Tecnologías principales
 
 HTML5
 
@@ -37,7 +37,7 @@ Python (Flask/Django/etc.)
 
 Figma (Diseño visual y prototipado)
 
-##🌐 Enlace del Proyecto
+## 🌐 Enlace del Proyecto
 ```
 🔗(https://jara20022.github.io/elrincondelosgustitos/index.html)
 🔗(https://www.figma.com/community/file/1526772506949873781)
@@ -46,8 +46,11 @@ Figma (Diseño visual y prototipado)
 👤 Autores
 
 Ivan Jara Ayala
+
 Jeremy Cervantes Rosales
+
 Noe Escobal Huayana
+
 Jesus Castillo Sumire
 
 Estudiantes de Diseño y Desarrollo de Software

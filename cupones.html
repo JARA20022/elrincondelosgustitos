@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Participa en nuestro minijuego semanal para ganar cupones de descuento exclusivos de El Rincón de los Gustitos.">
+    <meta name="author" content="RSOTO">
+    <meta name="keywords"
+        content="cupones, descuentos, sorteo, minijuego, promociones, ofertas, El Rincón de los Gustitos, juego de memoria">
+    <title>Cupones y Sorteos - El Rincón de los Gustitos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Estilos generales y variables */
+        :root {
+            --primary-color: #7c4dff;
+            /* Morado vibrante */
+            --secondary-color: #ffc107;
+            /* Amarillo para acentos */
+            --dark-bg: #1a1a1a;
+            /* Fondo muy oscuro */
+            --card-bg: #2b2e31;
+            /* Fondo de tarjeta oscuro */
+            --text-light: #f8f9fa;
+            /* Texto claro */
+            --text-muted: #adb5bd;
+            /* Texto gris claro */
+            --border-color: #444;
+        }
+
+        /* Estilos del HEADER (barra de navegación) */
+        @keyframes moveBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        header {
+            background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 50%, #2a2a2a 100%);
+            background-size: 200% 200%;
+            animation: moveBackground 15s linear infinite;
+            color: white;
+        }
+
+        header .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.75) !important;
+        }
+
+        header .navbar-nav .nav-link.active,
+        header .navbar-nav .nav-link:hover {
+            color: white !important;
+        }
+
+        /* Estilo para el fondo del BODY (toda la página) */
+        body {
+            background-image: url('img/fondo4.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-light);
+            /* Maintain text color from root vars */
+        }
+
+        /* Estilos de la sección hero */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1504754524776-8f4f60f64527?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 5px solid var(--primary-color);
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Estilos de títulos y tarjetas de juego/sorteo */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-card,
+        .raffle-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-card::before,
+        .raffle-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .game-card:hover,
+        .raffle-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Estilos del contador */
+        .countdown-timer span {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin: 0 15px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .countdown-timer div {
+            font-size: 1rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Estilos de botones */
+        .btn-game-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            padding: 12px 30px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-game-primary:hover {
+            background-color: #9258ff;
+            border-color: #9258ff;
+            transform: translateY(-2px);
+        }
+
+        .btn-game-primary:active {
+            transform: translateY(0);
+        }
+
+        /* Estilos del Juego de Memoria */
+        #memoryGame {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 600px;
+            margin: 30px auto;
+            perspective: 1000px;
+        }
+
+        .memory-card {
+            width: 100%;
+            height: 120px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .memory-card.flip {
+            transform: rotateY(180deg);
+        }
+
+        .memory-card .front-face,
+        .memory-card .back-face {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: 10px;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--text-light);
+            font-weight: bold;
+        }
+
+        .memory-card .front-face {
+            transform: rotateY(180deg);
+            background-color: #3a3a3a;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .memory-card .back-face {
+            background-color: #4a4a4a;
+            background-image: url('https://via.placeholder.com/120x120/555/fff?text=GUSTITOS');
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #666;
+        }
+
+        .memory-card .front-face i {
+            font-size: 3.5rem;
+            color: var(--text-light);
+        }
+
+        .game-message {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-top: 20px;
+        }
+
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/milogo.png" alt="Logo El Rincón" width="40" height="40"
+                        class="d-inline-block align-text-top me-2"> El Rincón de los Gustitos
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">🏠 Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="productos.html">🍽️ Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="promos.html">✨ Promociones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacto.html">✉️ Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="comprar.html">🛒 Comprar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="cupones.html">🎟️ Cupones</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit">🔍</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <h1 class="display-4 mb-3">¡Descuentos y Diversión Garantizada!</h1>
+                <p class="lead">Demuestra tu habilidad en nuestro minijuego y participa en el sorteo semanal de
+                    cupones de hasta 70% de descuento. ¡Cada semana, una nueva oportunidad!</p>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-md-10 col-lg-8">
+                        <div class="game-card text-center">
+                            <h2 class="section-title">Minijuego Semanal: ¡Memoria de Gustitos!</h2>
+                            <p class="lead text-muted mb-4">Encuentra todas las parejas de íconos para ganar una
+                                entrada al sorteo de cupones. ¡Pon a prueba tu memoria!</p>
+
+                            <div id="memoryGame">
+                            </div>
+
+                            <p id="gameMessage" class="game-message text-info"></p>
+                            <div class="game-controls">
+                                <button id="startGameBtn" class="btn btn-lg btn-game-primary">Iniciar Juego</button>
+                                <button id="playAgainBtn" class="btn btn-lg btn-outline-secondary"
+                                    style="display: none;">Jugar de Nuevo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-10 col-lg-8">
+                        <div class="raffle-card text-center">
+                            <h2 class="section-title">Próximo Sorteo de Cupones</h2>
+                            <p class="lead text-muted">¡No te pierdas la oportunidad de ganar descuentos increíbles en
+                                tus platillos favoritos!</p>
+                            <div class="countdown-timer d-flex justify-content-center align-items-end mb-4">
+                                <div><span id="days">00</span><br>Días</div>
+                                <div><span id="hours">00</span><br>Horas</div>
+                                <div><span id="minutes">00</span><br>Minutos</div>
+                                <div><span id="seconds">00</span><br>Segundos</div>
+                            </div>
+                            <p id="raffleEntryMessage" class="text-success game-message" style="display: none;">
+                                🎉 ¡Felicidades! Has ganado una entrada para el sorteo de cupones. ¡Mucha suerte!
+                            </p>
+                            <p class="text-muted small">Los ganadores se anunciarán cada sábado a las 8 PM (hora de
+                                Arequipa) en nuestras redes sociales y vía email. ¡Mantente atento!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center text-lg-start bg-dark text-muted pt-4">
+        <section class="container text-center text-md-start mt-5">
+            <div class="row mt-3">
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        <i class="fas fa-gem me-3"></i>El Rincón de los Gustitos
+                    </h6>
+                    <p>
+                        Calidad y sabor en cada platillo. Tu destino favorito para la comida peruana
+                        e internacional con delivery rápido y eficiente.
+                    </p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">Productos</h6>
+                    <p><a href="productos.html" class="text-reset">Pollo Broaster</a></p>
+                    <p><a href="productos.html" class="text-reset">Platos Criollos</a></p>
+                    <p><a href="productos.html" class="text-reset">Bebidas</a></p>
+                    <p><a href="productos.html" class="text-reset">Postres</a></p>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">Enlaces Útiles</h6>
+                    <p><a href="promos.html" class="text-reset">Promociones</a></p>
+                    <p><a href="comprar.html" class="text-reset">Mi Carrito</a></p>
+                    <p><a href="cupones.html" class="text-reset">Cupones</a></p>
+                    <p><a href="contacto.html" class="text-reset">Ayuda</a></p>
+                </div>
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">Contacto</h6>
+                    <p><i class="fas fa-home me-3"></i> Arequipa, Perú</p>
+                    <p><i class="fas fa-envelope me-3"></i> info@gustitos.com</p>
+                    <p><i class="fas fa-phone me-3"></i> +51 987 654 321</p>
+                    <p><i class="fas fa-print me-3"></i> +51 912 345 678</p>
+                </div>
+            </div>
+        </section>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+            ©
+            <span id="currentYear"></span> El Rincón de los Gustitos. Todos los derechos
+            reservados.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Lógica del Juego de Memoria ---
+            const memoryGameContainer = document.getElementById('memoryGame');
+            const startGameBtn = document.getElementById('startGameBtn');
+            const playAgainBtn = document.getElementById('playAgainBtn');
+            const gameMessage = document.getElementById('gameMessage');
+            const raffleEntryMessage = document.getElementById('raffleEntryMessage');
+
+            // Íconos de Font Awesome para las cartas (8 pares = 16 cartas)
+            const cardIcons = [
+                'fa-solid fa-burger',
+                'fa-solid fa-pizza-slice',
+                'fa-solid fa-leaf',
+                'fa-solid fa-fish', // Para representar sushi o pescado
+                'fa-solid fa-bowl-food', // Para representar pasta o un plato en bowl
+                'fa-solid fa-burrito',
+                'fa-solid fa-hotdog',
+                'fa-solid fa-ice-cream',
+            ];
+
+            let cards = [];
+            let flippedCards = [];
+            let matchedPairs = 0;
+            let lockBoard = false;
+            let hasWonGame = false; // Controla si ya ganó el juego actual
+            let attempts = 0; // Contador de intentos
+
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            function createBoard() {
+                memoryGameContainer.innerHTML = '';
+                const gameIcons = shuffle([...cardIcons, ...cardIcons]); // Duplicar para pares
+                cards = [];
+                flippedCards = [];
+                matchedPairs = 0;
+                lockBoard = true; // Bloquear al inicio para la vista previa
+                hasWonGame = false;
+                attempts = 0; // Resetear intentos
+                raffleEntryMessage.style.display = 'none'; // Ocultar mensaje de sorteo
+
+                gameIcons.forEach((iconClass, index) => {
+                    const cardElement = document.createElement('div');
+                    cardElement.classList.add('memory-card');
+                    cardElement.dataset.icon = iconClass; // Guardar la clase del ícono
+                    cardElement.dataset.index = index; // Para identificar la carta
+
+                    cardElement.innerHTML = `
+                        <div class="front-face"><i class="${iconClass}"></i></div>
+                        <div class="back-face"></div>
+                    `;
+                    cardElement.addEventListener('click', flipCard);
+                    memoryGameContainer.appendChild(cardElement);
+                    cards.push(cardElement);
+                });
+
+                gameMessage.textContent = 'Haz clic en "Iniciar Juego" para comenzar.';
+                memoryGameContainer.style.pointerEvents = 'none'; // Deshabilitar clics hasta iniciar
+                startGameBtn.style.display = 'block';
+                playAgainBtn.style.display = 'none';
+            }
+
+            function flipCard() {
+                if (lockBoard || this === flippedCards[0] || hasWonGame) return;
+
+                this.classList.add('flip');
+                flippedCards.push(this);
+
+                if (flippedCards.length === 2) {
+                    lockBoard = true;
+                    attempts++; // Incrementar intentos cuando se voltean dos cartas
+                    updateGameMessage(); // Actualizar mensaje de intentos
+                    checkForMatch();
+                }
+            }
+
+            function checkForMatch() {
+                const [card1, card2] = flippedCards;
+                const isMatch = card1.dataset.icon === card2.dataset.icon; // Comparar por clase de ícono
+
+                isMatch ? disableCards() : unflipCards();
+            }
+
+            function disableCards() {
+                flippedCards[0].removeEventListener('click', flipCard);
+                flippedCards[1].removeEventListener('click', flipCard);
+                matchedPairs++;
+
+                resetBoard();
+
+                if (matchedPairs === cardIcons.length) {
+                    gameMessage.textContent = '🎉 ¡Felicidades! ¡Has encontrado todas las parejas! Has ganado una entrada para el sorteo de cupones.';
+                    raffleEntryMessage.style.display = 'block';
+                    hasWonGame = true;
+                    endGame();
+                } else if (attempts >= 10) { // Comprobar si se acabaron los intentos DESPUÉS de un posible match
+                    gameMessage.textContent = `¡Se te acabaron los intentos! No lograste encontrar todas las parejas. Intenta de nuevo.`;
+                    endGame();
+                }
+            }
+
+            function unflipCards() {
+                setTimeout(() => {
+                    flippedCards[0].classList.remove('flip');
+                    flippedCards[1].classList.remove('flip');
+                    resetBoard();
+                    if (attempts >= 10 && !hasWonGame) { // Comprobar si se acabaron los intentos si no hubo match
+                        gameMessage.textContent = `¡Se te acabaron los intentos! No lograste encontrar todas las parejas. Intenta de nuevo.`;
+                        endGame();
+                    }
+                }, 1000);
+            }
+
+            function resetBoard() {
+                [flippedCards, lockBoard] = [[], false];
+            }
+
+            function updateGameMessage() {
+                if (!hasWonGame) {
+                    const remainingAttempts = 10 - attempts;
+                    gameMessage.textContent = `Intentos restantes: ${remainingAttempts}.`;
+                    if (remainingAttempts <= 0 && matchedPairs < cardIcons.length) {
+                        gameMessage.textContent = `¡Se te acabaron los intentos!`; // Mensaje final antes de endGame
+                    }
+                }
+            }
+
+            function endGame() {
+                lockBoard = true; // Asegurar que el tablero esté bloqueado
+                memoryGameContainer.style.pointerEvents = 'none'; // Deshabilitar clics
+                startGameBtn.style.display = 'none';
+                playAgainBtn.style.display = 'block';
+            }
+
+            function showAllCardsTemporarily() {
+                lockBoard = true; // Bloquear interacción
+                gameMessage.textContent = 'Memoriza las posiciones...';
+                cards.forEach(card => card.classList.add('flip'));
+
+                setTimeout(() => {
+                    cards.forEach(card => card.classList.remove('flip'));
+                    lockBoard = false; // Desbloquear interacción para empezar a jugar
+                    updateGameMessage(); // Mostrar el mensaje inicial de intentos
+                    memoryGameContainer.style.pointerEvents = 'auto'; // Habilitar clics
+                }, 3000); // 3 segundos de vista previa
+            }
+
+            startGameBtn.addEventListener('click', () => {
+                startGameBtn.style.display = 'none'; // Ocultar botón de inicio
+                showAllCardsTemporarily(); // Mostrar todas las cartas y luego ocultarlas
+            });
+
+            playAgainBtn.addEventListener('click', createBoard);
+
+            // Inicializar el juego al cargar la página
+            createBoard();
+
+
+            // --- Lógica del Contador para el Sorteo Semanal ---
+            const daysElement = document.getElementById('days');
+            const hoursElement = document.getElementById('hours');
+            const minutesElement = document.getElementById('minutes');
+            const secondsElement = document.getElementById('seconds');
+
+            function updateCountdown() {
+                const now = new Date();
+                let raffleDate = new Date();
+
+                // Establece la fecha del próximo sorteo: Sábado a las 8 PM (20:00)
+                const targetDay = 6; // Sábado (0=Domingo, 1=Lunes, ..., 6=Sábado)
+                const targetHour = 20; // 8 PM
+
+                // Calcula los días restantes hasta el próximo sábado
+                let daysUntilSaturday = (targetDay - now.getDay() + 7) % 7;
+                if (daysUntilSaturday === 0 && now.getHours() >= targetHour) {
+                    // Si es sábado y ya pasó la hora del sorteo, el próximo sorteo es en 7 días
+                    daysUntilSaturday = 7;
+                }
+
+                raffleDate.setDate(now.getDate() + daysUntilSaturday);
+                raffleDate.setHours(targetHour, 0, 0, 0);
+
+                const totalSeconds = (raffleDate - now) / 1000;
+
+                if (totalSeconds <= 0) {
+                    clearInterval(countdownInterval);
+                    daysElement.textContent = '00';
+                    hoursElement.textContent = '00';
+                    minutesElement.textContent = '00';
+                    secondsElement.textContent = '00';
+                    document.querySelector('.raffle-card .lead').textContent = '¡El sorteo está en curso o ya ha terminado! Permanece atento a los resultados.';
+                    return;
+                }
+
+                const days = Math.floor(totalSeconds / 3600 / 24);
+                const hours = Math.floor(totalSeconds / 3600) % 24;
+                const minutes = Math.floor(totalSeconds / 60) % 60;
+                const seconds = Math.floor(totalSeconds) % 60;
+
+                daysElement.textContent = String(days).padStart(2, '0');
+                hoursElement.textContent = String(hours).padStart(2, '0');
+                minutesElement.textContent = String(minutes).padStart(2, '0');
+                secondsElement.textContent = String(seconds).padStart(2, '0');
+            }
+
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            updateCountdown(); // Llamada inicial para evitar el parpadeo
+
+
+            // --- Lógica de la Barra de Navegación (nueva) ---
+            let cart = []; // Initialize an empty cart for nav bar count
+
+            function loadCart() {
+                const storedCart = localStorage.getItem('shoppingCart');
+                if (storedCart) {
+                    cart = JSON.parse(storedCart);
+                }
+                updateCartCount();
+            }
+
+            function updateCartCount() {
+                const cartCountElement = document.getElementById('cart-count');
+                if (cartCountElement) { // Check if element exists before updating
+                    cartCountElement.textContent = cart.length;
+                }
+            }
+            // Call loadCart after DOMContentLoaded is fired for other elements
+            loadCart();
+
+            const searchInput = document.querySelector('form.d-flex input[type="search"]');
+            const searchButton = document.querySelector('form.d-flex button[type="submit"]');
+
+            if (searchButton) {
+                searchButton.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const searchTerm = searchInput.value;
+                    if (searchTerm) {
+                        alert('Buscando: ' + searchTerm);
+                    }
+                });
+            }
+
+            // Update current year in footer
+            const currentYearElement = document.getElementById('currentYear');
+            if (currentYearElement) {
+                currentYearElement.innerText = new Date().getFullYear();
+            }
+        });
+    </script>
+</body>
+
+</html>

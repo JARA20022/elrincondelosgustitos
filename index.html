@@ -52,10 +52,156 @@
             border: 1px solid #ddd;
             border-radius: 5px;
         }
+
+        /* CHATBOT STYLES */
+        #chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #0d6efd; /* Bootstrap primary blue */
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        #chatbot-button:hover {
+            background-color: #0b5ed7; /* Darker blue on hover */
+            transform: scale(1.05);
+        }
+
+        #chatbot-container {
+            position: fixed;
+            bottom: 90px; /* Above the button */
+            right: 20px;
+            width: 350px;
+            height: 450px;
+            background-color: #343a40; /* Dark background for chatbot */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 999;
+            font-family: 'Segoe UI', sans-serif;
+            color: #e9ecef; /* Light text color */
+        }
+
+        #chatbot-header {
+            background-color: #0d6efd;
+            color: white;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #chatbot-header button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        #chatbot-body {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #212529; /* Even darker for message area */
+            border-bottom: 1px solid #495057;
+        }
+
+        .chat-message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 15px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .chat-message.user {
+            background-color: #0d6efd; /* User message bubble */
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .chat-message.bot {
+            background-color: #6c757d; /* Bot message bubble */
+            color: white;
+            align-self: flex-start;
+            margin-right: auto;
+        }
+
+        #chatbot-input-area {
+            display: flex;
+            padding: 10px;
+            background-color: #343a40;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        #chatbot-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #495057;
+            border-radius: 5px;
+            background-color: #495057;
+            color: white;
+            margin-right: 10px;
+        }
+
+        #chatbot-input::placeholder {
+            color: #ced4da;
+        }
+
+        #chatbot-send-button {
+            background-color: #28a745; /* Green send button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #chatbot-send-button:hover {
+            background-color: #218838;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            #chatbot-container {
+                width: 90%;
+                right: 5%;
+                bottom: 80px;
+                height: 400px;
+            }
+            #chatbot-button {
+                width: 50px;
+                height: 50px;
+                font-size: 1.8em;
+            }
+        }
     </style>
 </head>
 
-<body class="futuristic-bg"> <header class="fixed-top">
+<body class="futuristic-bg">
+    <header class="fixed-top">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
@@ -117,7 +263,8 @@
                         <h5 class="display-3 fw-bold mb-3">¡El Mejor Pollo Broaster de la Ciudad!</h5>
                         <p class="lead mb-4">Disfruta de nuestro pollo crujiente y jugoso, preparado con la receta
                             secreta de la abuela.</p>
-                        <a href="productos.html" class="btn btn-primary btn-lg mt-3 futuristic-btn">Ver Productos</a> </div>
+                        <a href="productos.html" class="btn btn-primary btn-lg mt-3 futuristic-btn">Ver Productos</a>
+                    </div>
                 </div>
                 <div class="carousel-item">
                     <video class="d-block w-100 vh-100 object-fit-cover" autoplay loop muted playsinline>
@@ -127,7 +274,8 @@
                     <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
                         <h5 class="display-3 fw-bold mb-3">El Sabor Auténtico del Lomo Saltado</h5>
                         <p class="lead mb-4">Una explosión de sabores peruanos en cada bocado.</p>
-                        <a href="productos.html" class="btn btn-success btn-lg mt-3 futuristic-btn">Ver Productos</a> </div>
+                        <a href="productos.html" class="btn btn-success btn-lg mt-3 futuristic-btn">Ver Productos</a>
+                    </div>
                 </div>
                 <div class="carousel-item">
                     <video class="d-block w-100 vh-100 object-fit-cover" autoplay loop muted playsinline>
@@ -172,18 +320,23 @@
 
         <section class="py-5 bg-dark text-white">
             <div class="container text-center">
-                <div class="datetime-section futuristic-card"> <p id="currentDateTime"></p>
+                <div class="datetime-section futuristic-card">
+                    <p id="currentDateTime"></p>
                 </div>
-                <h2 class="mt-4 futuristic-heading">Nuestra Misión</h2> <p class="lead">Ofrecer una experiencia culinaria inolvidable con ingredientes frescos y el amor de
+                <h2 class="mt-4 futuristic-heading">Nuestra Misión</h2>
+                <p class="lead">Ofrecer una experiencia culinaria inolvidable con ingredientes frescos y el amor de
                     casa.</p>
                 <div class="row mt-4">
-                    <div class="col-md-4 futuristic-card"> <h3>Tradición</h3>
+                    <div class="col-md-4 futuristic-card">
+                        <h3>Tradición</h3>
                         <p>Recetas ancestrales que deleitan el paladar.</p>
                     </div>
-                    <div class="col-md-4 futuristic-card"> <h3>Calidad</h3>
+                    <div class="col-md-4 futuristic-card">
+                        <h3>Calidad</h3>
                         <p>Ingredientes seleccionados para el mejor sabor.</p>
                     </div>
-                    <div class="col-md-4 futuristic-card"> <h3>Servicio</h3>
+                    <div class="col-md-4 futuristic-card">
+                        <h3>Servicio</h3>
                         <p>Atención personalizada para tu comodidad.</p>
                     </div>
                 </div>
@@ -192,14 +345,17 @@
 
     </main>
 
-    <footer class="text-center text-lg-start text-white bg-dark futuristic-footer"> <section class="d-flex justify-content-between p-4" style="background-color: #0d6efd;"> <div class="me-5">
+    <footer class="text-center text-lg-start text-white bg-dark futuristic-footer">
+        <section class="d-flex justify-content-between p-4" style="background-color: #0d6efd;">
+            <div class="me-5">
                 <span>Conéctate con nosotros en redes sociales:</span>
             </div>
             <div>
                 <a href="#" class="text-white me-4 futuristic-icon"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="text-white me-4 futuristic-icon"><i class="fab fa-twitter"></i></a>
                 <a href="#" class="text-white me-4 futuristic-icon"><i class="fab fa-google"></i></a>
-                <a href="https://www.instagram.com/el_rincon_de_los_gustitos/?igsh=MW93dW05ZTE1YmpndQ%3D%3D#" class="text-white me-4 futuristic-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.instagram.com/el_rincon_de_los_gustitos/?igsh=MW93dW05ZTE1YmpndQ%3D%3D#"
+                    class="text-white me-4 futuristic-icon" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="#" class="text-white me-4 futuristic-icon"><i class="fab fa-linkedin"></i></a>
                 <a href="#" class="text-white me-4 futuristic-icon"><i class="fab fa-github"></i></a>
             </div>
@@ -256,6 +412,22 @@
         </div>
     </footer>
 
+    <button id="chatbot-button">💬</button>
+
+    <div id="chatbot-container">
+        <div id="chatbot-header">
+            Chatbot de Gustitos - BETA
+            <button id="chatbot-close-button">✖</button>
+        </div>
+        <div id="chatbot-body">
+            <div class="chat-message bot">¡Hola! ¿En qué puedo ayudarte hoy?</div>
+        </div>
+        <div id="chatbot-input-area">
+            <input type="text" id="chatbot-input" placeholder="Escribe tu mensaje...">
+            <button id="chatbot-send-button">Enviar</button>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
@@ -270,6 +442,74 @@
         // Actualizar la fecha y hora inmediatamente y luego cada segundo
         updateDateTime();
         setInterval(updateDateTime, 1000);
+
+        // Chatbot functionality
+        const chatbotButton = document.getElementById('chatbot-button');
+        const chatbotContainer = document.getElementById('chatbot-container');
+        const chatbotCloseButton = document.getElementById('chatbot-close-button');
+        const chatbotBody = document.getElementById('chatbot-body');
+        const chatbotInput = document.getElementById('chatbot-input');
+        const chatbotSendButton = document.getElementById('chatbot-send-button');
+
+        chatbotButton.addEventListener('click', () => {
+            chatbotContainer.style.display = chatbotContainer.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        chatbotCloseButton.addEventListener('click', () => {
+            chatbotContainer.style.display = 'none';
+        });
+
+        chatbotSendButton.addEventListener('click', sendMessage);
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const userMessage = chatbotInput.value.trim();
+            if (userMessage === '') return;
+
+            // Display user message
+            appendMessage(userMessage, 'user');
+            chatbotInput.value = '';
+
+            // Simulate bot response
+            setTimeout(() => {
+                const botResponse = getBotResponse(userMessage);
+                appendMessage(botResponse, 'bot');
+                chatbotBody.scrollTop = chatbotBody.scrollHeight; // Scroll to bottom
+            }, 500);
+        }
+
+        function appendMessage(message, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message', sender);
+            messageElement.textContent = message;
+            chatbotBody.appendChild(messageElement);
+            chatbotBody.scrollTop = chatbotBody.scrollHeight; // Scroll to bottom
+        }
+
+        function getBotResponse(userMessage) {
+            userMessage = userMessage.toLowerCase();
+            if (userMessage.includes('hola') || userMessage.includes('hi')) {
+                return '¡Hola! ¿Cómo puedo ayudarte hoy?';
+            } else if (userMessage.includes('menu') || userMessage.includes('productos')) {
+                return 'Puedes ver nuestro menú completo en la sección "Productos". Tenemos pollo broaster, platos criollos, postres y bebidas. ¡Visita la página de Productos para más detalles!';
+            } else if (userMessage.includes('promociones') || userMessage.includes('ofertas')) {
+                return '¡Claro! Revisa nuestra sección de "Promociones" para conocer las ofertas actuales y descuentos especiales.';
+            } else if (userMessage.includes('pedido') || userMessage.includes('comprar')) {
+                return 'Para realizar un pedido, dirígete a la sección "Comprar". Allí podrás añadir productos a tu carrito y finalizar tu compra.';
+            } else if (userMessage.includes('contacto') || userMessage.includes('ayuda')) {
+                return 'Si necesitas ayuda o quieres contactarnos, visita nuestra sección de "Contacto". También puedes llamarnos al +51 987 654 321.';
+            } else if (userMessage.includes('horario')) {
+                return 'Nuestro horario de atención es de Lunes a Domingo de 12:00 PM a 10:00 PM.';
+            } else if (userMessage.includes('gracias')) {
+                return '¡De nada! Estoy aquí para ayudarte. ¿Hay algo más en lo que pueda asistirte?';
+            } else {
+                return 'Lo siento, no entendí tu pregunta. ¿Puedes reformularla o preguntar sobre algo más?';
+            }
+        }
     </script>
 </body>
 

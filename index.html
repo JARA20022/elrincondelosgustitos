@@ -492,22 +492,77 @@
 
         function getBotResponse(userMessage) {
             userMessage = userMessage.toLowerCase();
-            if (userMessage.includes('hola') || userMessage.includes('hi')) {
-                return '¡Hola! ¿Cómo puedo ayudarte hoy?';
-            } else if (userMessage.includes('menu') || userMessage.includes('productos')) {
-                return 'Puedes ver nuestro menú completo en la sección "Productos". Tenemos pollo broaster, platos criollos, postres y bebidas. ¡Visita la página de Productos para más detalles!';
-            } else if (userMessage.includes('promociones') || userMessage.includes('ofertas')) {
-                return '¡Claro! Revisa nuestra sección de "Promociones" para conocer las ofertas actuales y descuentos especiales.';
-            } else if (userMessage.includes('pedido') || userMessage.includes('comprar')) {
-                return 'Para realizar un pedido, dirígete a la sección "Comprar". Allí podrás añadir productos a tu carrito y finalizar tu compra.';
-            } else if (userMessage.includes('contacto') || userMessage.includes('ayuda')) {
-                return 'Si necesitas ayuda o quieres contactarnos, visita nuestra sección de "Contacto". También puedes llamarnos al +51 987 654 321.';
-            } else if (userMessage.includes('horario')) {
-                return 'Nuestro horario de atención es de Lunes a Domingo de 12:00 PM a 10:00 PM.';
-            } else if (userMessage.includes('gracias')) {
+
+            // Saludos y despedidas
+            if (userMessage.includes('hola') || userMessage.includes('hi') || userMessage.includes('buenos días')) {
+                return '¡Hola! Bienvenido a El Rincón de los Gustitos. ¿En qué puedo ayudarte hoy?';
+            } else if (userMessage.includes('adiós') || userMessage.includes('chao') || userMessage.includes('hasta luego')) {
+                return '¡Hasta pronto! Que tengas un excelente día. ¡Esperamos verte de nuevo!';
+            } else if (userMessage.includes('gracias') || userMessage.includes('muchas gracias')) {
                 return '¡De nada! Estoy aquí para ayudarte. ¿Hay algo más en lo que pueda asistirte?';
-            } else {
-                return 'Lo siento, no entendí tu pregunta. ¿Puedes reformularla o preguntar sobre algo más?';
+            }
+
+            // Información sobre el menú y productos
+            else if (userMessage.includes('menú') || userMessage.includes('productos') || userMessage.includes('platillos') || userMessage.includes('comida')) {
+                return 'Puedes ver nuestro menú completo en la sección "Productos". Tenemos pollo broaster, platos criollos como lomo saltado y ají de gallina, ceviche fresco, deliciosos postres y una variedad de bebidas. ¡Visita la página de Productos para más detalles!';
+            } else if (userMessage.includes('pollo broaster')) {
+                return '¡Nuestro pollo broaster es el mejor de la ciudad! Crujiente y jugoso, preparado con nuestra receta secreta. Puedes encontrarlo en la sección de Productos.';
+            } else if (userMessage.includes('lomo saltado')) {
+                return 'El lomo saltado es una explosión de sabores peruanos en cada bocado, un clásico que no te puedes perder. ¡Está en nuestra sección de Productos!';
+            } else if (userMessage.includes('ceviche')) {
+                return 'Ofrecemos ceviche fresco, preparado al momento con los mejores ingredientes marinos. ¡Ideal para refrescar tu día!';
+            } else if (userMessage.includes('ají de gallina') || userMessage.includes('aji de gallina')) {
+                return 'Prueba nuestro cremoso y sabroso ají de gallina, ¡un verdadero clásico de la casa que te encantará!';
+            } else if (userMessage.includes('postres') || userMessage.includes('dulces')) {
+                return '¡Endulza tu día con nuestra selección de postres! Encuéntralos en la sección de Productos junto a nuestras bebidas.';
+            } else if (userMessage.includes('bebidas') || userMessage.includes('refrescos')) {
+                return 'Tenemos una variedad de bebidas para acompañar tu comida o simplemente para refrescarte. ¡Están en la sección de Productos!';
+            }
+
+            // Pedidos y compras
+            else if (userMessage.includes('pedido') || userMessage.includes('comprar') || userMessage.includes('hacer un pedido')) {
+                return 'Para realizar un pedido, dirígete a la sección "Comprar". Allí podrás añadir productos a tu carrito y finalizar tu compra de manera sencilla.';
+            }
+
+            // Promociones y cupones
+            else if (userMessage.includes('promociones') || userMessage.includes('ofertas') || userMessage.includes('descuentos')) {
+                return '¡Claro! Revisa nuestra sección de "Promociones" para conocer las ofertas actuales y descuentos especiales que tenemos para ti. También puedes ir a la sección "Cupones" para ver si hay algún código disponible.';
+            } else if (userMessage.includes('cupones') || userMessage.includes('código de descuento') || userMessage.includes('codigo de descuento')) {
+                return 'Visita nuestra sección de "Cupones" para ver los códigos de descuento disponibles y cómo aplicarlos en tu compra.';
+            }
+
+            // Contacto y ubicación
+            else if (userMessage.includes('contacto') || userMessage.includes('ayuda') || userMessage.includes('dónde están') || userMessage.includes('ubicación')) {
+                return 'Si necesitas ayuda o quieres contactarnos, visita nuestra sección de "Contacto". Estamos ubicados en Lima, Perú. También puedes llamarnos al +51 987 654 321 o escribirnos a info@gustitos.com.';
+            } else if (userMessage.includes('teléfono') || userMessage.includes('numero') || userMessage.includes('número')) {
+                return 'Puedes contactarnos al teléfono: +51 987 654 321.';
+            } else if (userMessage.includes('email') || userMessage.includes('correo')) {
+                return 'Nuestro correo electrónico es: info@gustitos.com.';
+            }
+
+            // Horarios
+            else if (userMessage.includes('horario') || userMessage.includes('abierto')) {
+                return 'Nuestro horario de atención es de Lunes a Domingo de 12:00 PM a 10:00 PM.';
+            }
+
+            // Métodos de pago
+            else if (userMessage.includes('pago') || userMessage.includes('pagar') || userMessage.includes('métodos de pago')) {
+                return 'Aceptamos varios métodos de pago, incluyendo Yape, Plin y Visa. Puedes ver los detalles en la parte inferior de nuestra página.';
+            }
+
+            // Redes Sociales
+            else if (userMessage.includes('redes sociales') || userMessage.includes('facebook') || userMessage.includes('instagram')) {
+                return 'Puedes encontrarnos en Facebook e Instagram como "El Rincón de los Gustitos". Los enlaces están en la parte inferior de la página.';
+            }
+
+            // Misión
+            else if (userMessage.includes('misión') || userMessage.includes('mision') || userMessage.includes('quienes somos')) {
+                return 'Nuestra misión es ofrecer una experiencia culinaria inolvidable con ingredientes frescos y el amor de casa, combinando tradición, calidad y el mejor servicio.';
+            }
+
+            // Respuesta por defecto
+            else {
+                return 'Lo siento, no entendí tu pregunta. ¿Puedes reformularla o preguntar sobre algo más? Por favor, intenta con palabras clave como "menú", "pedido", "contacto", "promociones", "horario" o "pago".';
             }
         }
     </script>

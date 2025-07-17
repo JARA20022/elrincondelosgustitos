@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="es" data-bs-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contáctanos para pedidos, consultas o sugerencias. Estamos listos para atenderte.">
+    <meta name="description"
+        content="Contáctanos para pedidos, consultas o sugerencias. Estamos listos para atenderte.">
     <meta name="author" content="RSOTO">
     <meta name="keywords" content="contacto, telefono, email, direccion, soporte">
     <title>Contacto - El Rincón de los Gustitos</title>
@@ -19,9 +21,11 @@
             0% {
                 background-position: 0% 50%;
             }
+
             50% {
                 background-position: 100% 50%;
             }
+
             100% {
                 background-position: 0% 50%;
             }
@@ -30,48 +34,63 @@
         /* Estilo para el fondo animado del HEADER (barra de navegación) */
         header {
             background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 50%, #2a2a2a 100%);
-            background-size: 200% 200%; /* Tamaño más grande para permitir el movimiento */
-            animation: moveBackground 15s linear infinite; /* Animación de movimiento */
-            color: white; /* Asegura que el texto dentro del header sea legible */
+            background-size: 200% 200%;
+            /* Tamaño más grande para permitir el movimiento */
+            animation: moveBackground 15s linear infinite;
+            /* Animación de movimiento */
+            color: white;
+            /* Asegura que el texto dentro del header sea legible */
         }
 
         /* Estilo para el fondo de imagen del BODY (toda la página) */
         body {
-            background-image: url('img/fondo-contacto.jpg'); /* Puedes cambiar esta imagen */
-            background-size: cover; /* Cubre toda la pantalla sin distorsionar */
-            background-position: center center; /* Centra la imagen */
-            background-repeat: no-repeat; /* Evita que la imagen se repita */
-            background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
-            min-height: 100vh; /* Asegura que el fondo cubra al menos toda la altura de la ventana */
+            background-image: url('img/fondo-contacto.jpg');
+            /* Puedes cambiar esta imagen */
+            background-size: cover;
+            /* Cubre toda la pantalla sin distorsionar */
+            background-position: center center;
+            /* Centra la imagen */
+            background-repeat: no-repeat;
+            /* Evita que la imagen se repita */
+            background-attachment: fixed;
+            /* Mantiene la imagen fija al hacer scroll */
+            min-height: 100vh;
+            /* Asegura que el fondo cubra al menos toda la altura de la ventana */
             display: flex;
             flex-direction: column;
         }
 
         /* Opcional: Asegurar que los enlaces de navegación mantengan su color */
         header .navbar-nav .nav-link {
-            color: rgba(255, 255, 255, 0.75) !important; /* Un poco transparente para el estado normal */
+            color: rgba(255, 255, 255, 0.75) !important;
+            /* Un poco transparente para el estado normal */
         }
 
         header .navbar-nav .nav-link.active,
         header .navbar-nav .nav-link:hover {
-            color: white !important; /* Blanco sólido para activo y hover */
+            color: white !important;
+            /* Blanco sólido para activo y hover */
         }
 
         /* Estilo para el contenedor del formulario para mejorar la visibilidad */
         .contact-form-container {
-            background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente oscuro */
+            background-color: rgba(0, 0, 0, 0.7);
+            /* Fondo semi-transparente oscuro */
             padding: 30px;
             border-radius: 10px;
-            color: white; /* Texto blanco para contraste */
+            color: white;
+            /* Texto blanco para contraste */
         }
     </style>
 </head>
+
 <body>
     <header class="fixed-top">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
-                    <img src="img/milogo.png" alt="Logo El Rincón" width="40" height="40" class="d-inline-block align-text-top me-2"> El Rincón de los Gustitos
+                    <img src="img/milogo.png" alt="Logo El Rincón" width="40" height="40"
+                        class="d-inline-block align-text-top me-2"> El Rincón de los Gustitos
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,9 +113,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="comprar.html">🛒 Comprar</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cupones.html">🎟️ Cupones</a>
+                        </li>
                     </ul>
                     <form class="d-flex" role="search" onsubmit="event.preventDefault();">
-                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" id="searchInput">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"
+                            id="searchInput">
                         <button class="btn btn-outline-light" type="button" id="searchButton">🔍</button>
                     </form>
                 </div>
@@ -113,19 +136,22 @@
                         <form id="contactForm">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="name" required placeholder="Tu nombre completo">
+                                <input type="text" class="form-control" id="name" required
+                                    placeholder="Tu nombre completo">
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Correo Electrónico</label>
-                                <input type="email" class="form-control" id="email" required placeholder="tu.correo@ejemplo.com">
+                                <input type="email" class="form-control" id="email" required
+                                    placeholder="tu.correo@ejemplo.com">
                             </div>
                             <div class="mb-3">
                                 <label for="message" class="form-label">Mensaje</label>
-                                <textarea class="form-control" id="message" rows="5" required placeholder="Escribe tu mensaje aquí..."></textarea>
+                                <textarea class="form-control" id="message" rows="5" required
+                                    placeholder="Escribe tu mensaje aquí..."></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Enviar Mensaje</button>
                             <div id="formMessage" class="mt-3 text-center">
-                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -151,14 +177,17 @@
                 <div class="row mt-3">
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <h6 class="text-uppercase fw-bold">El Rincón de los Gustitos</h6>
-                        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                            style="width: 60px; background-color: #7c4dff; height: 2px" />
                         <p>
-                            Sabor y tradición en cada bocado. Te ofrecemos una experiencia culinaria auténtica con los mejores ingredientes.
+                            Sabor y tradición en cada bocado. Te ofrecemos una experiencia culinaria auténtica con los
+                            mejores ingredientes.
                         </p>
                     </div>
                     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                         <h6 class="text-uppercase fw-bold">Productos</h6>
-                        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                            style="width: 60px; background-color: #7c4dff; height: 2px" />
                         <p><a href="productos.html" class="text-white">Pollo Broaster</a></p>
                         <p><a href="productos.html" class="text-white">Platos Criollos</a></p>
                         <p><a href="productos.html" class="text-white">Bebidas y Postres</a></p>
@@ -166,7 +195,8 @@
                     </div>
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                         <h6 class="text-uppercase fw-bold">Enlaces Útiles</h6>
-                        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                            style="width: 60px; background-color: #7c4dff; height: 2px" />
                         <p><a href="index.html" class="text-white">Inicio</a></p>
                         <p><a href="contacto.html" class="text-white">Ayuda</a></p>
                         <p><a href="comprar.html" class="text-white">Hacer Pedido</a></p>
@@ -174,7 +204,8 @@
                     </div>
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                         <h6 class="text-uppercase fw-bold">Contacto</h6>
-                        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                            style="width: 60px; background-color: #7c4dff; height: 2px" />
                         <p><i class="fas fa-home me-3"></i> Arequipa, Perú</p>
                         <p><i class="fas fa-envelope me-3"></i> info@elrincon.com</p>
                         <p><i class="fas fa-phone me-3"></i> +51 987 654 321</p>
@@ -199,7 +230,7 @@
         const contactForm = document.getElementById('contactForm');
         const formMessage = document.getElementById('formMessage');
 
-        contactForm.addEventListener('submit', function(event) {
+        contactForm.addEventListener('submit', function (event) {
             event.preventDefault(); // Evita el envío real del formulario y la recarga de la página
 
             // Muestra el mensaje de éxito
@@ -215,4 +246,5 @@
         });
     </script>
 </body>
+
 </html>

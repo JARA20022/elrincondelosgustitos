@@ -1,6 +1,8 @@
 body {
-    padding-top: 70px; /* Ajusta este valor si tu navbar cambia de altura */
-    min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura de la vista */
+    padding-top: 70px;
+    /* Ajusta este valor si tu navbar cambia de altura */
+    min-height: 100vh;
+    /* Asegura que el body ocupe al menos toda la altura de la vista */
     display: flex;
     flex-direction: column;
     /* Fuente más amigable, puedes cambiarla si tienes una específica en mente */
@@ -8,122 +10,165 @@ body {
 }
 
 main {
-    flex: 1; /* Permite que el contenido principal crezca y empuje el footer hacia abajo */
-    padding-top: 20px; /* Espacio extra para el contenido principal debajo de la navbar fija */
-    padding-bottom: 20px; /* Espacio extra para el contenido principal antes del footer */
+    flex: 1;
+    /* Permite que el contenido principal crezca y empuje el footer hacia abajo */
+    padding-top: 20px;
+    /* Espacio extra para el contenido principal debajo de la navbar fija */
+    padding-bottom: 20px;
+    /* Espacio extra para el contenido principal antes del footer */
 }
 
 /* Navbar */
 .navbar-brand img {
     margin-right: 8px;
-    border-radius: 50%; /* Si quieres que tu logo sea circular */
+    border-radius: 50%;
+    /* Si quieres que tu logo sea circular */
 }
 
 /* Estilos de los enlaces de la Navbar */
 .navbar .nav-link {
-    transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
-    border-radius: 8px; /* Esquinas ligeramente redondeadas */
-    padding: 8px 15px; /* Relleno ajustado para mejor estética */
-    margin: 0 5px; /* Pequeño margen entre enlaces */
-    font-weight: 500; /* Un poco más de grosor para el texto */
+    transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    /* Transición suave */
+    border-radius: 8px;
+    /* Esquinas ligeramente redondeadas */
+    padding: 8px 15px;
+    /* Relleno ajustado para mejor estética */
+    margin: 0 5px;
+    /* Pequeño margen entre enlaces */
+    font-weight: 500;
+    /* Un poco más de grosor para el texto */
 }
 
 .navbar .nav-link:hover,
 .navbar .nav-link.active {
-    color: #ffd700 !important; /* Color dorado para el texto en hover/activo */
-    background-color: rgba(255, 255, 255, 0.1); /* Fondo blanco sutil en hover */
-    box-shadow: 0 0 12px rgba(255, 215, 0, 0.5); /* Efecto de brillo sutil */
+    color: #ffd700 !important;
+    /* Color dorado para el texto en hover/activo */
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Fondo blanco sutil en hover */
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+    /* Efecto de brillo sutil */
 }
 
 
 /* Estilos para el Carrusel en index.html */
 #mainCarousel {
-    height: 100vh; /* El carrusel ocupa toda la altura de la ventana */
+    height: 100vh;
+    /* El carrusel ocupa toda la altura de la ventana */
 }
 
 .carousel-item {
-    height: 100vh; /* Cada slide ocupa toda la altura */
+    height: 100vh;
+    /* Cada slide ocupa toda la altura */
 }
 
 .carousel-item video,
 .carousel-item img {
-    height: 100%; /* El video/imagen ocupa el 100% de la altura del item */
-    object-fit: cover; /* Asegura que el video/imagen cubra el área sin distorsionarse */
-    width: 100%; /* Asegura que el video/imagen ocupe todo el ancho */
+    height: 100%;
+    /* El video/imagen ocupa el 100% de la altura del item */
+    object-fit: cover;
+    /* Asegura que el video/imagen cubra el área sin distorsionarse */
+    width: 100%;
+    /* Asegura que el video/imagen ocupe todo el ancho */
 }
 
 .carousel-caption {
-    padding: 30px; /* Mantener un buen padding para el contenido */
-    border-radius: 12px; /* Bordes más redondeados */
-    color: black; /* Color del texto en negro */
-    text-shadow: 
-        1px 1px 0 #fff,    /* Abajo-derecha */
-        -1px -1px 0 #fff,  /* Arriba-izquierda */
-        1px -1px 0 #fff,   /* Abajo-izquierda */
-        -1px 1px 0 #fff,   /* Arriba-derecha */
-        2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra suave para profundidad */
-    
+    padding: 30px;
+    /* Mantener un buen padding para el contenido */
+    border-radius: 12px;
+    /* Bordes más redondeados */
+    color: black;
+    /* Color del texto en negro */
+    text-shadow:
+        1px 1px 0 #fff,
+        /* Abajo-derecha */
+        -1px -1px 0 #fff,
+        /* Arriba-izquierda */
+        1px -1px 0 #fff,
+        /* Abajo-izquierda */
+        -1px 1px 0 #fff,
+        /* Arriba-derecha */
+        2px 2px 5px rgba(0, 0, 0, 0.7);
+    /* Sombra suave para profundidad */
+
     /* Centrar verticalmente y un poco más arriba */
     position: absolute;
-    top: 40%; /* Ajustado a 40% para que esté más arriba del centro */
+    top: 40%;
+    /* Ajustado a 40% para que esté más arriba del centro */
     left: 50%;
-    transform: translate(-50%, -50%); /* Para centrarlo horizontalmente y ajustar por el 'top' */
-    width: 80%; /* Ancho del cuadro de texto */
-    max-width: 900px; /* Ancho máximo para pantallas grandes */
-    text-align: center; /* Centrar el texto dentro del cuadro */
+    transform: translate(-50%, -50%);
+    /* Para centrarlo horizontalmente y ajustar por el 'top' */
+    width: 80%;
+    /* Ancho del cuadro de texto */
+    max-width: 900px;
+    /* Ancho máximo para pantallas grandes */
+    text-align: center;
+    /* Centrar el texto dentro del cuadro */
     /* Asegurar que el caption esté por encima del video */
-    z-index: 10; 
+    z-index: 10;
 }
 
 .carousel-caption h5 {
-    font-size: 3rem; /* Tamaño de fuente más grande para el título */
+    font-size: 3rem;
+    /* Tamaño de fuente más grande para el título */
     font-weight: bold;
     margin-bottom: 1rem;
     line-height: 1.2;
-    text-transform: uppercase; /* Para darle más impacto */
+    text-transform: uppercase;
+    /* Para darle más impacto */
 }
 
 .carousel-caption p {
-    font-size: 1.6rem; /* Tamaño de fuente más grande para la descripción */
+    font-size: 1.6rem;
+    /* Tamaño de fuente más grande para la descripción */
     margin-bottom: 1.5rem;
     line-height: 1.5;
 }
 
 /* Botones dentro del carrusel */
 .carousel-caption .btn {
-    padding: 15px 35px; /* Botones un poco más grandes */
+    padding: 15px 35px;
+    /* Botones un poco más grandes */
     font-size: 1.3rem;
-    font-weight: 700; /* Más negrita */
-    border-radius: 50px; /* Botones más redondeados */
+    font-weight: 700;
+    /* Más negrita */
+    border-radius: 50px;
+    /* Botones más redondeados */
     transition: all 0.3s ease;
 }
 
 .carousel-caption .btn:hover {
-    transform: translateY(-5px); /* Pequeño levantamiento al pasar el mouse */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); /* Sombra más grande al pasar el mouse */
+    transform: translateY(-5px);
+    /* Pequeño levantamiento al pasar el mouse */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    /* Sombra más grande al pasar el mouse */
 }
 
 /* --- Nuevos estilos para la Sección de Promociones (promos.html) --- */
 .promotions-section {
-    min-height: calc(100vh - 70px - 200px); /* Ajustar altura para que el footer no se superponga inmediatamente */
+    min-height: calc(100vh - 70px - 200px);
+    /* Ajustar altura para que el footer no se superponga inmediatamente */
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('../img/fondo-promociones.jpg'); /* Opcional: fondo para la sección de promos */
+    background-image: url('../img/fondo-promociones.jpg');
+    /* Opcional: fondo para la sección de promos */
     background-size: cover;
     background-position: center;
     position: relative;
-    z-index: 1; /* Para controlar la superposición si hay otros elementos */
+    z-index: 1;
+    /* Para controlar la superposición si hay otros elementos */
 }
 
-.promotions-section::before { /* Capa de superposición para mejorar contraste */
+.promotions-section::before {
+    /* Capa de superposición para mejorar contraste */
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6); /* Oscurece el fondo */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Oscurece el fondo */
     z-index: -1;
 }
 
@@ -135,7 +180,8 @@ main {
 
 .promotions-section h1,
 .promotions-section h2 {
-    color: #ffd700; /* Dorado para títulos de promociones */
+    color: #ffd700;
+    /* Dorado para títulos de promociones */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
@@ -144,8 +190,10 @@ main {
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: rgba(33, 37, 41, 0.9); /* Ligeramente transparente para ver el fondo */
-    border: 2px solid #ffd700; /* Borde dorado */
+    background-color: rgba(33, 37, 41, 0.9);
+    /* Ligeramente transparente para ver el fondo */
+    border: 2px solid #ffd700;
+    /* Borde dorado */
 }
 
 .promo-card:hover {
@@ -154,84 +202,88 @@ main {
 }
 
 .promo-card .card-title {
-    color: #e9ecef; /* Color del título de la tarjeta */
+    color: #e9ecef;
+    /* Color del título de la tarjeta */
 }
 
 .promo-card .btn {
-    background-color: #ffd700; /* Botón amarillo/dorado */
+    background-color: #ffd700;
+    /* Botón amarillo/dorado */
     border-color: #ffd700;
-    color: #212529; /* Texto oscuro para contraste */
+    color: #212529;
+    /* Texto oscuro para contraste */
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .promo-card .btn:hover {
-    background-color: #e6c200; /* Tono más oscuro al hover */
+    background-color: #e6c200;
+    /* Tono más oscuro al hover */
     border-color: #e6c200;
     transform: scale(1.03);
 }
 
 /* Estilos para las Tarjetas en productos.html */
 .card {
-    border: none; 
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); 
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
-    border-radius: 10px; 
-    overflow: hidden; 
+    border: none;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .card:hover {
-    transform: translateY(-8px); 
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7); 
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7);
 }
 
 .card-img-top {
-    height: 250px; 
-    object-fit: cover; 
+    height: 250px;
+    object-fit: cover;
     width: 100%;
 }
 
 .card-body {
-    padding: 1.5rem; 
-    background-color: #212529; 
-    color: #f8f9fa; 
+    padding: 1.5rem;
+    background-color: #212529;
+    color: #f8f9fa;
 }
 
 .card-title {
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 0.75rem;
-    color: #e9ecef; 
+    color: #e9ecef;
 }
 
 .card-text {
     font-size: 1rem;
     line-height: 1.6;
-    color: #ced4da; 
+    color: #ced4da;
 }
 
 /* Estilos para el footer */
 footer {
     padding-top: 40px;
-    margin-top: auto; 
-    background-color: #1a1a1a !important; 
+    margin-top: auto;
+    background-color: #1a1a1a !important;
     color: #f8f9fa;
 }
 
 footer hr {
-    background-color: #7c4dff !important; 
-    height: 2px; 
+    background-color: #7c4dff !important;
+    height: 2px;
     opacity: 0.8;
 }
 
 footer a {
-    color: #ced4da; 
-    text-decoration: none; 
+    color: #ced4da;
+    text-decoration: none;
     transition: color 0.2s;
 }
 
 footer a:hover {
-    color: #9258ff !important; 
+    color: #9258ff !important;
     text-decoration: underline;
 }
 
@@ -241,16 +293,21 @@ footer .fab {
 }
 
 /* Estilo general para títulos de sección */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 700; 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
     margin-bottom: 1rem;
 }
 
 /* Ajustes para formularios (ej. contacto.html, modal) */
 .form-control {
-    background-color: #343a40; 
-    color: #e9ecef; 
-    border: 1px solid #495057; 
+    background-color: #343a40;
+    color: #e9ecef;
+    border: 1px solid #495057;
 }
 
 .form-control:focus {
@@ -261,29 +318,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .form-label {
-    color: #e9ecef; 
+    color: #e9ecef;
 }
 
 /* Estilos para el Modal de compra */
 .modal-content {
-    background-color: #212529; 
-    color: #e9ecef; 
+    background-color: #212529;
+    color: #e9ecef;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
 .modal-header {
-    border-bottom: 1px solid #343a40; 
+    border-bottom: 1px solid #343a40;
 }
 
 .modal-footer {
-    border-top: 1px solid #343a40; 
+    border-top: 1px solid #343a40;
 }
 
 .modal-title {
-    color: #e9ecef; 
+    color: #e9ecef;
 }
+
 /* Estilo para el botón de cerrar del modal en tema oscuro */
 .modal-header .btn-close-white {
-    filter: invert(1) grayscale(100%) brightness(200%); /* Hace que la X sea blanca */
+    filter: invert(1) grayscale(100%) brightness(200%);
+    /* Hace que la X sea blanca */
 }

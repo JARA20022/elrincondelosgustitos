@@ -3,16 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="img/milogo.png" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Descubre los más deliciosos platillos y postres en El Rincón de los Gustitos.">
     <meta name="author" content="Tu Nombre o Equipo">
-    <meta name="keywords" content="comida, postres, bebidas, restaurante, menú, delivery, Arequipa">
+    <meta name="keywords" content="comida, postres, bebidas, restaurante, menú, delivery, Lima">
     <title>Inicio - El Rincón de los Gustitos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* Estilos adicionales para la sección de fecha y hora */
@@ -26,11 +27,35 @@
             font-size: 1.2em;
             text-align: center;
         }
+
+        /* Estilos para los íconos de métodos de pago */
+        .payment-icons img {
+            width: 50px;
+            /* Ajusta el tamaño de los logos según sea necesario */
+            height: auto;
+            margin: 5px;
+            border-radius: 5px;
+            padding: 3px;
+            background-color: #fff;
+            /* Fondo blanco para los logos */
+            border: 1px solid #ddd;
+            /* Borde suave */
+        }
+
+        .payment-icons i {
+            font-size: 3em;
+            /* Tamaño para iconos de Font Awesome */
+            margin: 5px;
+            color: #ffffff;
+            /* Color de los iconos */
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
     </style>
 </head>
 
-<body>
-    <header class="fixed-top">
+<body class="futuristic-bg"> <header class="fixed-top">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
@@ -92,8 +117,7 @@
                         <h5 class="display-3 fw-bold mb-3">¡El Mejor Pollo Broaster de la Ciudad!</h5>
                         <p class="lead mb-4">Disfruta de nuestro pollo crujiente y jugoso, preparado con la receta
                             secreta de la abuela.</p>
-                        <a href="productos.html" class="btn btn-primary btn-lg mt-3">Ver Productos</a>
-                    </div>
+                        <a href="productos.html" class="btn btn-primary btn-lg mt-3 futuristic-btn">Ver Productos</a> </div>
                 </div>
                 <div class="carousel-item">
                     <video class="d-block w-100 vh-100 object-fit-cover" autoplay loop muted playsinline>
@@ -103,8 +127,7 @@
                     <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
                         <h5 class="display-3 fw-bold mb-3">El Sabor Auténtico del Lomo Saltado</h5>
                         <p class="lead mb-4">Una explosión de sabores peruanos en cada bocado.</p>
-                        <a href="productos.html" class="btn btn-success btn-lg mt-3">Ver Productos</a>
-                    </div>
+                        <a href="productos.html" class="btn btn-success btn-lg mt-3 futuristic-btn">Ver Productos</a> </div>
                 </div>
                 <div class="carousel-item">
                     <video class="d-block w-100 vh-100 object-fit-cover" autoplay loop muted playsinline>
@@ -114,7 +137,6 @@
                     <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
                         <h5 class="display-3 fw-bold mb-3">Frescura Marina en Cada Ceviche</h5>
                         <p class="lead mb-4">El clásico ceviche peruano, preparado al momento para ti.</p>
-                        <a href="productos.html" class="btn btn-info btn-lg mt-3">Ver Productos</a>
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -125,7 +147,6 @@
                     <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
                         <h5 class="display-3 fw-bold mb-3">El Delicioso Ají de Gallina de la Casa</h5>
                         <p class="lead mb-4">Cremoso y sabroso, un clásico que no te puedes perder.</p>
-                        <a href="productos.html" class="btn btn-danger btn-lg mt-3">Ver Productos</a>
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -136,7 +157,6 @@
                     <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
                         <h5 class="display-3 fw-bold mb-3">Endulza Tu Día con Nuestros Postres y Bebidas</h5>
                         <p class="lead mb-4">Acompaña tu comida con algo dulce o refrescante.</p>
-                        <a href="productos.html" class="btn btn-warning btn-lg mt-3">Ver Productos</a>
                     </div>
                 </div>
             </div>
@@ -152,23 +172,18 @@
 
         <section class="py-5 bg-dark text-white">
             <div class="container text-center">
-                <div class="datetime-section">
-                    <p id="currentDateTime"></p>
+                <div class="datetime-section futuristic-card"> <p id="currentDateTime"></p>
                 </div>
-                <h2 class="mt-4">Nuestra Misión</h2>
-                <p class="lead">Ofrecer una experiencia culinaria inolvidable con ingredientes frescos y el amor de
+                <h2 class="mt-4 futuristic-heading">Nuestra Misión</h2> <p class="lead">Ofrecer una experiencia culinaria inolvidable con ingredientes frescos y el amor de
                     casa.</p>
                 <div class="row mt-4">
-                    <div class="col-md-4">
-                        <h3>Tradición</h3>
+                    <div class="col-md-4 futuristic-card"> <h3>Tradición</h3>
                         <p>Recetas ancestrales que deleitan el paladar.</p>
                     </div>
-                    <div class="col-md-4">
-                        <h3>Calidad</h3>
+                    <div class="col-md-4 futuristic-card"> <h3>Calidad</h3>
                         <p>Ingredientes seleccionados para el mejor sabor.</p>
                     </div>
-                    <div class="col-md-4">
-                        <h3>Servicio</h3>
+                    <div class="col-md-4 futuristic-card"> <h3>Servicio</h3>
                         <p>Atención personalizada para tu comodidad.</p>
                     </div>
                 </div>
@@ -177,63 +192,65 @@
 
     </main>
 
-    <footer class="text-center text-lg-start text-white bg-dark">
-        <section class="d-flex justify-content-between p-4" style="background-color: #6351ce">
-            <div class="me-5">
+    <footer class="text-center text-lg-start text-white bg-dark futuristic-footer"> <section class="d-flex justify-content-between p-4" style="background-color: #0d6efd;"> <div class="me-5">
                 <span>Conéctate con nosotros en redes sociales:</span>
             </div>
             <div>
-                <a href="" class="text-white me-4"><i class="fab fa-facebook-f"></i></a>
-                <a href="" class="text-white me-4"><i class="fab fa-twitter"></i></a>
-                <a href="" class="text-white me-4"><i class="fab fa-google"></i></a>
-                <a href="" class="text-white me-4"><i class="fab fa-instagram"></i></a>
-                <a href="" class="text-white me-4"><i class="fab fa-linkedin"></i></a>
-                <a href="" class="text-white me-4"><i class="fab fa-github"></i></a>
+                <a href="#" class="text-white me-4 futuristic-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white me-4 futuristic-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white me-4 futuristic-icon"><i class="fab fa-google"></i></a>
+                <a href="https://www.instagram.com/el_rincon_de_los_gustitos/?igsh=MW93dW05ZTE1YmpndQ%3D%3D#" class="text-white me-4 futuristic-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white me-4 futuristic-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-white me-4 futuristic-icon"><i class="fab fa-github"></i></a>
             </div>
         </section>
         <section class="">
             <div class="container text-center text-md-start mt-5">
                 <div class="row mt-3">
-                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
                         <h6 class="text-uppercase fw-bold">El Rincón de los Gustitos</h6>
-                        <hr class="mb-4 mt-0 d-inline-block mx-auto"
-                            style="width: 60px; background-color: #7c4dff; height: 2px" />
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto futuristic-hr" />
                         <p>
                             Tu destino culinario para disfrutar de sabores auténticos y momentos inolvidables.
                             ¡Ven y descubre tu platillo favorito!
                         </p>
                     </div>
-                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
                         <h6 class="text-uppercase fw-bold">Productos</h6>
-                        <hr class="mb-4 mt-0 d-inline-block mx-auto"
-                            style="width: 60px; background-color: #7c4dff; height: 2px" />
-                        <p><a href="productos.html" class="text-white">Pollo Broaster</a></p>
-                        <p><a href="productos.html" class="text-white">Platos Criollos</a></p>
-                        <p><a href="productos.html" class="text-white">Postres</a></p>
-                        <p><a href="productos.html" class="text-white">Bebidas</a></p>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto futuristic-hr" />
+                        <p><a href="productos.html" class="text-white futuristic-link">Pollo Broaster</a></p>
+                        <p><a href="productos.html" class="text-white futuristic-link">Platos Criollos</a></p>
+                        <p><a href="productos.html" class="text-white futuristic-link">Postres</a></p>
+                        <p><a href="productos.html" class="text-white futuristic-link">Bebidas</a></p>
                     </div>
-                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
                         <h6 class="text-uppercase fw-bold">Enlaces Útiles</h6>
-                        <hr class="mb-4 mt-0 d-inline-block mx-auto"
-                            style="width: 60px; background-color: #7c4dff; height: 2px" />
-                        <p><a href="promos.html" class="text-white">Promociones</a></p>
-                        <p><a href="comprar.html" class="text-white">Cómo Comprar</a></p>
-                        <p><a href="contacto.html" class="text-white">Ayuda</a></p>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto futuristic-hr" />
+                        <p><a href="promos.html" class="text-white futuristic-link">Promociones</a></p>
+                        <p><a href="comprar.html" class="text-white futuristic-link">Cómo Comprar</a></p>
+                        <p><a href="contacto.html" class="text-white futuristic-link">Ayuda</a></p>
                     </div>
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                         <h6 class="text-uppercase fw-bold">Contacto</h6>
-                        <hr class="mb-4 mt-0 d-inline-block mx-auto"
-                            style="width: 60px; background-color: #7c4dff; height: 2px" />
-                        <p><i class="fas fa-home mr-3"></i> Arequipa, Perú</p>
-                        <p><i class="fas fa-envelope mr-3"></i> info@gustitos.com</p>
-                        <p><i class="fas fa-phone mr-3"></i> +51 987 654 321</p>
-                        <p><i class="fas fa-print mr-3"></i> +51 912 345 678</p>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto futuristic-hr" />
+                        <p><i class="fas fa-home me-3"></i> Lima, Perú</p>
+                        <p><i class="fas fa-envelope me-3"></i> info@gustitos.com</p>
+                        <p><i class="fas fa-phone me-3"></i> +51 987 654 321</p>
+                        <p><i class="fas fa-print me-3"></i> +51 912 345 678</p>
+
+                        <h6 class="text-uppercase fw-bold mt-4 text-warning">Métodos de Pago</h6>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto futuristic-hr" />
+                        <div class="payment-icons">
+                            <p class="text-white">Aceptamos:</p>
+                            <img src="img/yape.png" alt="Logo Yape" title="Pago con Yape">
+                            <img src="img/plin.png" alt="Logo Plin" title="Pago con Plin">
+                            <img src="img/visa.png" alt="Logo Visa" title="Pago con Visa">
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            ©
+        <div class="text-center p-3 futuristic-copyright" style="background-color: rgba(0, 50, 100, 0.3);"> ©
             <script>document.write(new Date().getFullYear());</script> El Rincón de los Gustitos. Todos los derechos
             reservados.
         </div>

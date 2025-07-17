@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="img/milogo.png" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Realiza tu pedido de comida online en El Rincón de los Gustitos de forma rápida y sencilla.">
@@ -52,6 +53,71 @@
         header .navbar-nav .nav-link.active,
         header .navbar-nav .nav-link:hover {
             color: white !important;
+        }
+
+        /* Estilos para los íconos de métodos de pago en esta página */
+        .payment-icons img {
+            width: 70px; /* Ajusta el tamaño de los logos según sea necesario */
+            height: auto;
+            margin: 10px;
+            border-radius: 8px;
+            padding: 5px;
+            background-color: #fff; /* Fondo blanco para los logos */
+            border: 1px solid #ddd; /* Borde suave */
+            cursor: pointer; /* Indica que son clickeables */
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .payment-icons img.selected {
+            border: 3px solid #007bff; /* Borde azul para el seleccionado */
+            transform: scale(1.05);
+        }
+
+        .payment-info {
+            display: none; /* Oculto por defecto */
+            margin-top: 20px;
+            padding: 15px;
+            /* CAMBIOS AQUÍ */
+            border: 1px solid #495057; /* Borde más oscuro para contraste */
+            border-radius: 8px;
+            background-color: #343a40; /* Fondo gris oscuro */
+            color: #fff; /* Texto blanco para legibilidad */
+        }
+
+        .payment-info.active {
+            display: block;
+        }
+
+        /* Ajustes para elementos dentro de .payment-info */
+        .payment-info h6 {
+            color: #ffffff; /* Asegura que los títulos sean blancos */
+        }
+        .payment-info p {
+            color: #e0e0e0; /* Un gris más claro para el texto normal */
+        }
+        .payment-info .form-label {
+            color: #ffffff; /* Etiquetas de formulario blancas */
+        }
+        .payment-info .form-control {
+            background-color: #495057; /* Fondo oscuro para inputs */
+            color: #fff; /* Texto blanco para inputs */
+            border-color: #6c757d; /* Borde de input más claro */
+        }
+        .payment-info .form-control::placeholder {
+            color: #ced4da; /* Placeholder claro */
+        }
+
+        #qrCodeContainer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #qrCodeContainer img {
+            max-width: 150px;
+            height: auto;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: #fff; /* Asegura que el QR tenga fondo blanco para escanear */
         }
     </style>
 </head>
@@ -149,10 +215,27 @@
                                     placeholder="Ej: sin cebolla, con extra picante, etc."></textarea>
                             </div>
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-success btn-lg">Confirmar Pedido</button>
+                                <button type="submit" class="btn btn-success btn-lg" id="continueToPaymentBtn">Continuar al Pago</button>
                             </div>
                             <div id="orderConfirmationMessage" class="mt-3 text-center"></div>
                         </form>
+
+                        <div id="paymentSection" class="card shadow-lg p-4 mb-4" style="display: none;">
+                            <h4 class="card-title text-center mb-4">Selecciona tu Método de Pago</h4>
+                            <div class="d-flex justify-content-center payment-icons mb-4">
+                                <img src="img/image_f48c45.png" alt="Logo Yape" title="Pago con Yape" data-payment="yape" class="payment-method-icon">
+                                <img src="img/image_f4897c.png" alt="Logo Plin" title="Pago con Plin" data-payment="plin" class="payment-method-icon">
+                                <img src="img/image_bacd62.png" alt="Logo Visa" title="Pago con Visa" data-payment="visa" class="payment-method-icon">
+                            </div>
+
+                            <div id="paymentDetails" class="payment-info">
+                                </div>
+
+                            <div class="d-grid gap-2 mt-4">
+                                <button type="button" class="btn btn-primary btn-lg" id="payNowBtn" style="display: none;">Pagar</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -194,7 +277,7 @@
                     </div>
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                         <h6 class="text-uppercase fw-bold">Contacto</h6>
-                        <p><i class="fas fa-home me-3"></i> Arequipa, Perú</p>
+                        <p><i class="fas fa-home me-3"></i> Lima, Perú</p>
                         <p><i class="fas fa-envelope me-3"></i> info@elrincon.com</p>
                         <p><i class="fas fa-phone me-3"></i> +51 987 654 321</p>
                         <p><i class="fas fa-print me-3"></i> +51 54 123 456</p>
@@ -207,6 +290,7 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('currentYear').textContent = new Date().getFullYear();
@@ -215,12 +299,21 @@
             const cartTotalElement = document.getElementById('cartTotal');
             const clearCartBtn = document.getElementById('clear-cart-btn');
             const deliveryForm = document.getElementById('deliveryForm');
+            const paymentSection = document.getElementById('paymentSection');
+            const paymentMethodIcons = document.querySelectorAll('.payment-method-icon');
+            const paymentDetailsDiv = document.getElementById('paymentDetails');
+            const payNowBtn = document.getElementById('payNowBtn');
             const orderConfirmationMessage = document.getElementById('orderConfirmationMessage');
+            const continueToPaymentBtn = document.getElementById('continueToPaymentBtn');
 
+            let selectedPaymentMethod = null; // To store the currently selected payment method
+
+            // Helper function to save cart to localStorage
             function saveCart() {
                 localStorage.setItem('shoppingCart', JSON.stringify(cart));
             }
 
+            // Function to render cart items
             function renderCartItems() {
                 cartItemsContainer.innerHTML = '';
                 let total = 0;
@@ -228,9 +321,11 @@
                     cartItemsContainer.innerHTML = `<tr><td colspan="5" class="text-center text-muted">El carrito está vacío.</td></tr>`;
                     cartTotalElement.textContent = 'S/ 0.00';
                     clearCartBtn.style.display = 'none';
+                    continueToPaymentBtn.setAttribute('disabled', true); // Disable "Continue to Payment" if cart is empty
                     return;
                 }
                 clearCartBtn.style.display = 'block';
+                continueToPaymentBtn.removeAttribute('disabled'); // Enable "Continue to Payment" if cart has items
 
                 cart.forEach((item, index) => {
                     const subtotal = item.price * item.quantity;
@@ -247,6 +342,7 @@
                 });
                 cartTotalElement.textContent = `S/ ${total.toFixed(2)}`;
 
+                // Attach event listeners for quantity changes
                 document.querySelectorAll('.item-quantity').forEach(input => {
                     input.addEventListener('change', (e) => {
                         const id = e.target.dataset.id;
@@ -255,6 +351,7 @@
                     });
                 });
 
+                // Attach event listeners for remove item buttons
                 document.querySelectorAll('.remove-item').forEach(button => {
                     button.addEventListener('click', (e) => {
                         const id = e.target.dataset.id;
@@ -263,6 +360,7 @@
                 });
             }
 
+            // Function to update item quantity
             function updateQuantity(id, quantity) {
                 const item = cart.find(i => i.id === id);
                 if (item) {
@@ -272,30 +370,165 @@
                 }
             }
 
+            // Function to remove item from cart
             function removeItem(id) {
                 cart = cart.filter(i => i.id !== id);
                 saveCart();
                 renderCartItems();
             }
 
+            // Clear cart button event listener
             clearCartBtn.addEventListener('click', () => {
                 cart = [];
                 saveCart();
                 renderCartItems();
             });
 
+            // Handle "Continue to Payment" button click
             deliveryForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                orderConfirmationMessage.innerHTML = `
-                    <div class="alert alert-success">¡Tu pedido ha sido confirmado! Nos contactaremos contigo pronto.</div>
-                `;
-                deliveryForm.reset();
-                cart = [];
-                saveCart();
-                renderCartItems();
-                setTimeout(() => orderConfirmationMessage.innerHTML = '', 5000);
+                e.preventDefault(); // Prevent default form submission
+
+                if (cart.length === 0) {
+                    alert('Tu carrito está vacío. Agrega productos antes de continuar.');
+                    return;
+                }
+
+                // Check if all delivery form fields are valid
+                if (!deliveryForm.checkValidity()) {
+                    deliveryForm.classList.add('was-validated'); // Show validation messages
+                    return;
+                }
+
+                // Hide delivery form and show payment section
+                deliveryForm.style.display = 'none';
+                paymentSection.style.display = 'block';
+                // Scroll to the payment section for better UX
+                paymentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                 // Ensure payment details are displayed when moving to payment section
+                // If no payment method is selected yet, default to Yape for initial display
+                if (!selectedPaymentMethod) {
+                    selectedPaymentMethod = 'yape'; // Default to Yape
+                    // Optionally, visually select Yape icon
+                    document.querySelector('.payment-method-icon[data-payment="yape"]').classList.add('selected');
+                    payNowBtn.style.display = 'block'; // Show Pay button
+                }
+                displayPaymentDetails(selectedPaymentMethod);
             });
 
+            // Handle payment method selection
+            paymentMethodIcons.forEach(icon => {
+                icon.addEventListener('click', (e) => {
+                    // Remove selected class from all icons
+                    paymentMethodIcons.forEach(i => i.classList.remove('selected'));
+                    // Add selected class to the clicked icon
+                    e.target.classList.add('selected');
+
+                    selectedPaymentMethod = e.target.dataset.payment;
+                    payNowBtn.style.display = 'block'; // Show Pay button once a method is selected
+                    displayPaymentDetails(selectedPaymentMethod);
+                });
+            });
+
+            // Function to display payment specific details
+            function displayPaymentDetails(method) {
+                let detailsHtml = '';
+                // Calculate total dynamically each time payment details are shown
+                const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2);
+
+                if (method === 'yape' || method === 'plin') { // Usa el mismo QR para Yape y Plin
+                    const paymentName = method === 'yape' ? 'Yape' : 'Plin';
+                    const phoneNumber = method === 'yape' ? '987654321' : '912345678';
+                    detailsHtml = `
+                        <h6>Pago con ${paymentName}</h6>
+                        <p>Por favor, ${method === 'yape' ? 'yapea' : 'plinea'} el monto total a este número:</p>
+                        <p class="fw-bold">Número de ${paymentName}: ${phoneNumber}</p>
+                        <p>Monto a Pagar: <span class="fw-bold text-success">S/ ${totalAmount}</span></p>
+                        <p>Envía la captura de pantalla de tu pago al +51 ${phoneNumber} para confirmar tu pedido.</p>
+                        <div id="qrCodeContainer">
+                            <img src="img/qr.png" alt="Código QR para pago">
+                        </div>
+                    `;
+                } else if (method === 'visa') {
+                    detailsHtml = `
+                        <h6>Pago con Tarjeta (Visa/Mastercard)</h6>
+                        <p>Serás redirigido a una pasarela de pago segura para completar tu compra.</p>
+                        <div class="mb-3">
+                            <label for="cardNumber" class="form-label">Número de Tarjeta</label>
+                            <input type="text" class="form-control" id="cardNumber" placeholder="XXXX XXXX XXXX XXXX" required pattern="[0-9]{13,19}">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="expiryDate" class="form-label">Fecha de Expiración (MM/AA)</label>
+                                <input type="text" class="form-control" id="expiryDate" placeholder="MM/AA" required pattern="(0[1-9]|1[0-2])\/[0-9]{2}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cvv" class="form-label">CVV</label>
+                                <input type="text" class="form-control" id="cvv" placeholder="XXX" required pattern="[0-9]{3,4}">
+                            </div>
+                        </div>
+                        <p class="text-danger small">Para fines de demostración, no se procesará un pago real.</p>
+                    `;
+                }
+                paymentDetailsDiv.innerHTML = detailsHtml;
+                paymentDetailsDiv.classList.add('active'); // Show payment details
+            }
+
+            // Handle "Pagar" button click
+            payNowBtn.addEventListener('click', () => {
+                if (!selectedPaymentMethod) {
+                    alert('Por favor, selecciona un método de pago.');
+                    return;
+                }
+
+                // For Visa/Mastercard, perform a basic validation for demonstration
+                if (selectedPaymentMethod === 'visa') {
+                    const cardNumber = document.getElementById('cardNumber');
+                    const expiryDate = document.getElementById('expiryDate');
+                    const cvv = document.getElementById('cvv');
+
+                    if (!cardNumber.checkValidity() || !expiryDate.checkValidity() || !cvv.checkValidity()) {
+                        alert('Por favor, completa correctamente los datos de la tarjeta.');
+                        // Add was-validated class to the payment details form for validation messages
+                        paymentDetailsDiv.classList.add('was-validated'); 
+                        return;
+                    } else {
+                         // Remove was-validated class if valid, to clean up
+                        paymentDetailsDiv.classList.remove('was-validated'); 
+                    }
+                }
+
+
+                // Simulate payment processing
+                orderConfirmationMessage.innerHTML = `
+                    <div class="alert alert-info">Procesando tu pago con ${selectedPaymentMethod.toUpperCase()}...</div>
+                `;
+                orderConfirmationMessage.style.display = 'block';
+
+                setTimeout(() => {
+                    // Final confirmation message after simulated payment
+                    orderConfirmationMessage.innerHTML = `
+                        <div class="alert alert-success">¡Pago exitoso! Tu pedido ha sido enviado. Nos contactaremos contigo.</div>
+                    `;
+                    // Clear cart and reset forms
+                    cart = [];
+                    saveCart();
+                    renderCartItems(); // Re-render cart items (will show empty cart message)
+                    deliveryForm.reset();
+                    paymentDetailsDiv.innerHTML = ''; // Clear payment details
+                    paymentDetailsDiv.classList.remove('active'); // Hide payment details
+                    payNowBtn.style.display = 'none'; // Hide pay button
+                    paymentMethodIcons.forEach(i => i.classList.remove('selected')); // Deselect payment icons
+                    paymentSection.style.display = 'none'; // Hide payment section
+                    deliveryForm.style.display = 'block'; // Show delivery form again for a new order
+                    deliveryForm.classList.remove('was-validated'); // Remove validation styles
+                    selectedPaymentMethod = null; // Reset selected payment method
+
+                    // Hide confirmation message after 5 seconds
+                    setTimeout(() => orderConfirmationMessage.style.display = 'none', 5000);
+                }, 2000); // Simulate 2 second payment processing
+            });
+
+            // Initial render of cart items
             renderCartItems();
         });
     </script>

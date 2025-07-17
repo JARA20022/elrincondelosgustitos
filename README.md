@@ -40,7 +40,7 @@ Figma (Diseño visual y prototipado)
 ## 🌐 Enlace del Proyecto
 ```
 🔗(https://jara20022.github.io/elrincondelosgustitos/index.html)
-🔗(https://www.figma.com/community/file/1526772506949873781)
+🔗([https://www.figma.com/community/file/1526772506949873781)](https://www.figma.com/proto/JMoGcYjhLl4F7vgWa35v8P/El-rincon-de-los-gustitos--Community-?node-id=2002-5&t=gwK5WCKAoJvSawJl-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1)
 ```
 
 👤 Autores
